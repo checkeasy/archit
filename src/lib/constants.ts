@@ -8,6 +8,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Factures', href: '/dashboard/invoices', icon: 'Receipt' },
   { label: 'Documents', href: '/dashboard/documents', icon: 'Files' },
   { label: 'Planning', href: '/dashboard/calendar', icon: 'Calendar' },
+  { label: 'Rapports', href: '/dashboard/reports', icon: 'BarChart3' },
   { label: 'Paramètres', href: '/dashboard/settings', icon: 'Settings' },
 ];
 

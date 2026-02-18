@@ -16,6 +16,7 @@ import {
   Receipt,
   Files,
   Calendar,
+  BarChart3,
   Settings,
   Menu,
   X,
@@ -25,6 +26,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import CommandPalette from '@/components/CommandPalette';
+import NotificationsPanel from '@/components/NotificationsPanel';
 
 // Map icon string names from constants to actual Lucide components
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -35,6 +37,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Receipt,
   Files,
   Calendar,
+  BarChart3,
   Settings,
 };
 
@@ -57,6 +60,7 @@ export default function DashboardLayout({
   const { profile, setProfile, setLoading: setAuthLoading } = useAuthStore();
   const { sidebarOpen, setSidebarOpen } = useUIStore();
   const [loggingOut, setLoggingOut] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   // Fetch the user profile from Supabase on mount
   useEffect(() => {
@@ -347,10 +351,19 @@ export default function DashboardLayout({
           </button>
 
           {/* Notification bell */}
-          <button className="relative p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors">
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500" />
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setNotificationsOpen(!notificationsOpen)}
+              className="relative p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
+            >
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500" />
+            </button>
+            <NotificationsPanel
+              isOpen={notificationsOpen}
+              onClose={() => setNotificationsOpen(false)}
+            />
+          </div>
 
           {/* Separator */}
           <div className="hidden sm:block w-px h-6 bg-gray-200 mx-1" />
