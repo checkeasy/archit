@@ -394,7 +394,7 @@ function EditClientModal({ isOpen, onClose, client }: EditClientModalProps) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Telephone
+                Téléphone
               </label>
               <input
                 type="tel"
@@ -506,7 +506,7 @@ function EditClientModal({ isOpen, onClose, client }: EditClientModalProps) {
               onClick={onClose}
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              Annuler
+              Annulér
             </button>
             <button
               type="submit"
@@ -557,10 +557,10 @@ function ProjectsTab({ projects }: { projects: Project[] }) {
                   {project.status === 'active'
                     ? 'Actif'
                     : project.status === 'completed'
-                      ? 'Termine'
+                      ? 'Terminé'
                       : project.status === 'on_hold'
                         ? 'En pause'
-                        : 'Annule'}
+                        : 'Annulé'}
                 </span>
               </div>
               <h4 className="font-medium text-gray-900 mt-1">{project.name}</h4>
@@ -687,7 +687,7 @@ function InvoicesTab({ invoices }: { invoices: Invoice[] }) {
                       ? 'Payee'
                       : invoice.status === 'overdue'
                         ? 'En retard'
-                        : 'Annulee'}
+                        : 'Annulée'}
               </span>
               <p className="text-sm font-semibold text-gray-900 mt-1">
                 {formatCurrency(invoice.amount)}
@@ -828,7 +828,7 @@ export default function ClientDetailPage() {
                     <Phone className="w-4 h-4 text-emerald-600" />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-400">Telephone</p>
+                    <p className="text-xs text-gray-400">Téléphone</p>
                     <p className="text-sm text-gray-900">{client.phone}</p>
                   </div>
                 </div>

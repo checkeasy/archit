@@ -1085,12 +1085,12 @@ export default function MessagesPage() {
             }}
           >
             {messages.map((message, index) => {
-              // Determine if we should show a date separator
+              // Determiné if we should show a date separator
               const showDateSeparator =
                 message.dateLabel &&
                 (index === 0 || messages[index - 1]?.dateLabel !== message.dateLabel);
 
-              // Determine if we should show avatar (first message or different sender than previous)
+              // Determiné if we should show avatar (first message or different sender than previous)
               const showAvatar =
                 index === 0 ||
                 messages[index - 1]?.senderId !== message.senderId ||
@@ -1461,7 +1461,7 @@ export default function MessagesPage() {
                   e.currentTarget.style.backgroundColor = '#ffffff';
                 }}
               >
-                Annuler
+                Annulér
               </button>
               <button
                 style={{

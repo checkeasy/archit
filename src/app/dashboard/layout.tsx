@@ -18,6 +18,7 @@ import {
   Calendar,
   BarChart3,
   MessageSquare,
+  FileDown,
   Settings,
   Menu,
   X,
@@ -40,6 +41,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Calendar,
   BarChart3,
   MessageSquare,
+  FileDown,
   Settings,
 };
 

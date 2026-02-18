@@ -124,7 +124,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'document_upload',
     userName: 'Marie Lefevre',
     avatarColor: AVATAR_COLORS['Marie Lefevre'],
-    description: 'a importe 3 plans dans',
+    description: 'a importé 3 plans dans',
     projectName: 'Maison Martin',
     projectId: '2',
     time: '09:45',
@@ -136,7 +136,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'comment',
     userName: 'Jean Dupont',
     avatarColor: AVATAR_COLORS['Jean Dupont'],
-    description: 'a ajoute un commentaire sur',
+    description: 'a ajouté un commentaire sur',
     projectName: 'Bureaux Nextech',
     projectId: '3',
     time: '09:12',
@@ -160,7 +160,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'invoice',
     userName: 'Sophie Bernard',
     avatarColor: AVATAR_COLORS['Sophie Bernard'],
-    description: 'a cree la facture FAC-00245 pour',
+    description: 'a créé la facture FAC-00245 pour',
     projectName: 'SCI Les Terrasses',
     projectId: '1',
     time: '08:05',
@@ -186,7 +186,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'document_upload',
     userName: 'Jean Dupont',
     avatarColor: AVATAR_COLORS['Jean Dupont'],
-    description: 'a importe le CCTP dans',
+    description: 'a importé le CCTP dans',
     projectName: 'Residence Les Terrasses',
     projectId: '1',
     time: '16:20',
@@ -198,7 +198,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'client',
     userName: 'Sophie Bernard',
     avatarColor: AVATAR_COLORS['Sophie Bernard'],
-    description: 'a ajoute un nouveau client :',
+    description: 'a ajouté un nouveau client :',
     projectName: 'Mairie de Lyon',
     projectId: null,
     time: '15:00',
@@ -210,7 +210,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'comment',
     userName: 'Marie Lefevre',
     avatarColor: AVATAR_COLORS['Marie Lefevre'],
-    description: 'a ajoute un commentaire sur',
+    description: 'a ajouté un commentaire sur',
     projectName: 'Maison Martin',
     projectId: '2',
     time: '14:10',
@@ -248,7 +248,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'document_upload',
     userName: 'Thomas Moreau',
     avatarColor: AVATAR_COLORS['Thomas Moreau'],
-    description: 'a importe les rendus 3D dans',
+    description: 'a importé les rendus 3D dans',
     projectName: 'Maison Martin',
     projectId: '2',
     time: '15:30',
@@ -284,7 +284,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'comment',
     userName: 'Thomas Moreau',
     avatarColor: AVATAR_COLORS['Thomas Moreau'],
-    description: 'a ajoute une note technique sur',
+    description: 'a ajouté une note technique sur',
     projectName: 'Residence Les Terrasses',
     projectId: '1',
     time: '09:45',
@@ -298,7 +298,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'client',
     userName: 'Marie Lefevre',
     avatarColor: AVATAR_COLORS['Marie Lefevre'],
-    description: 'a mis a jour les coordonnees de',
+    description: 'a mis a jour les coordonnées de',
     projectName: 'Nextech SAS',
     projectId: null,
     time: '16:40',
@@ -322,7 +322,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'document_upload',
     userName: 'Jean Dupont',
     avatarColor: AVATAR_COLORS['Jean Dupont'],
-    description: 'a importe le rapport de sol dans',
+    description: 'a importé le rapport de sol dans',
     projectName: 'Ecole Montessori',
     projectId: '5',
     time: '14:00',
@@ -334,7 +334,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'deadline',
     userName: 'Claire Petit',
     avatarColor: AVATAR_COLORS['Claire Petit'],
-    description: 'a ajoute une echeance : Rendu APD -',
+    description: 'a ajouté une echeance : Rendu APD -',
     projectName: 'Maison Martin',
     projectId: '2',
     time: '11:30',
@@ -372,7 +372,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'comment',
     userName: 'Marie Lefevre',
     avatarColor: AVATAR_COLORS['Marie Lefevre'],
-    description: 'a ajoute un commentaire sur',
+    description: 'a ajouté un commentaire sur',
     projectName: 'Restaurant Le Comptoir',
     projectId: '4',
     time: '14:30',
@@ -384,7 +384,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'document_upload',
     userName: 'Sophie Bernard',
     avatarColor: AVATAR_COLORS['Sophie Bernard'],
-    description: 'a importe le contrat signe dans',
+    description: 'a importé le contrat signe dans',
     projectName: 'Ecole Montessori',
     projectId: '5',
     time: '11:00',
@@ -396,7 +396,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     type: 'invoice',
     userName: 'Sophie Bernard',
     avatarColor: AVATAR_COLORS['Sophie Bernard'],
-    description: 'a cree la facture FAC-00243 pour',
+    description: 'a créé la facture FAC-00243 pour',
     projectName: 'Maison Martin',
     projectId: '2',
     time: '09:15',
@@ -471,10 +471,10 @@ export default function ActivityPage() {
             marginBottom: '4px',
           }}
         >
-          Activite
+          Activité
         </h1>
         <p style={{ fontSize: '14px', color: '#6b7280' }}>
-          Historique complet de l&apos;activite de votre cabinet
+          Historique complet de l&apos;activité de votre cabinet
         </p>
       </div>
 
@@ -650,7 +650,7 @@ export default function ActivityPage() {
           marginBottom: '20px',
         }}
       >
-        {filteredActivities.length} activite{filteredActivities.length > 1 ? 's' : ''}
+        {filteredActivities.length} activité{filteredActivities.length > 1 ? 's' : ''}
       </p>
 
       {/* ============================== */}
@@ -914,7 +914,7 @@ export default function ActivityPage() {
               }}
             />
             <p style={{ fontSize: '15px', fontWeight: 500, color: '#6b7280' }}>
-              Aucune activite trouvee
+              Aucune activité trouvee
             </p>
             <p style={{ fontSize: '13px', marginTop: '4px' }}>
               Essayez de modifier les filtres
@@ -965,7 +965,7 @@ export default function ActivityPage() {
               marginTop: '8px',
             }}
           >
-            {visibleCount} sur {filteredActivities.length} activites
+            {visibleCount} sur {filteredActivities.length} activités
           </p>
         </div>
       )}

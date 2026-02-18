@@ -264,8 +264,8 @@ function getStatusLabel(status: string): string {
   const labels: Record<string, string> = {
     active: 'Actif',
     on_hold: 'En pause',
-    completed: 'Termine',
-    cancelled: 'Annule',
+    completed: 'Terminé',
+    cancelled: 'Annulé',
   };
   return labels[status] || status;
 }
@@ -289,8 +289,8 @@ const STATUS_OPTIONS = [
   { value: '', label: 'Tous les statuts' },
   { value: 'active', label: 'Actif' },
   { value: 'on_hold', label: 'En pause' },
-  { value: 'completed', label: 'Termine' },
-  { value: 'cancelled', label: 'Annule' },
+  { value: 'completed', label: 'Terminé' },
+  { value: 'cancelled', label: 'Annulé' },
 ];
 
 // ============================================
@@ -465,7 +465,7 @@ export default function ProjectsPage() {
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50/50">
                   <th className="w-[100px] px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Reference
+                    Référence
                   </th>
                   <th className="w-[250px] px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                     Nom
@@ -928,7 +928,7 @@ export default function ProjectsPage() {
                 onClick={() => setShowNewModal(false)}
                 className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                Annuler
+                Annulér
               </button>
               <button
                 onClick={handleCreateProject}

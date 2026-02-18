@@ -606,7 +606,7 @@ export default function ProfileSettingsPage() {
   const [dateFormat, setDateFormat] = useState('dd-mm-yyyy');
   const [currency, setCurrency] = useState('eur');
 
-  // ---- Notification preferences ----
+  // ---- Notification préférences ----
   const [notifications, setNotifications] = useState<NotificationPreference[]>([
     {
       id: 'comments',

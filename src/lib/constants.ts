@@ -10,6 +10,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Planning', href: '/dashboard/calendar', icon: 'Calendar' },
   { label: 'Rapports', href: '/dashboard/reports', icon: 'BarChart3' },
   { label: 'Messages', href: '/dashboard/messages', icon: 'MessageSquare' },
+  { label: 'Exports', href: '/dashboard/exports', icon: 'FileDown' },
   { label: 'Paramètres', href: '/dashboard/settings', icon: 'Settings' },
 ];
 

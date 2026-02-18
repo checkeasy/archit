@@ -268,7 +268,7 @@ function getInvoiceStatusLabel(status: InvoiceStatus): string {
     sent: 'Envoyee',
     paid: 'Payee',
     overdue: 'En retard',
-    cancelled: 'Annulee',
+    cancelled: 'Annulée',
   };
   return labels[status] || status;
 }
@@ -348,7 +348,7 @@ export default function InvoiceDetailPage() {
           )}
           <button className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
             <Download className="h-4 w-4" />
-            Telecharger PDF
+            Télécharger PDF
           </button>
         </div>
       </div>

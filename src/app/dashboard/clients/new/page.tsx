@@ -199,7 +199,7 @@ export default function NewClientPage() {
               </div>
             </div>
 
-            {/* Email + Telephone */}
+            {/* Email + Téléphone */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label style={labelStyle}>Email</label>
@@ -214,7 +214,7 @@ export default function NewClientPage() {
                 />
               </div>
               <div>
-                <label style={labelStyle}>Telephone</label>
+                <label style={labelStyle}>Téléphone</label>
                 <input
                   type="tel"
                   value={phone}
@@ -335,7 +335,7 @@ export default function NewClientPage() {
                 cursor: 'pointer',
               }}
             >
-              Annuler
+              Annulér
             </button>
           </Link>
           <button

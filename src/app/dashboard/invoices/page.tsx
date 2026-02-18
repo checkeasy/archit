@@ -141,7 +141,7 @@ function getInvoiceStatusLabel(status: InvoiceStatus): string {
     sent: 'Envoyee',
     paid: 'Payee',
     overdue: 'En retard',
-    cancelled: 'Annulee',
+    cancelled: 'Annulée',
   };
   return labels[status] || status;
 }

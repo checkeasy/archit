@@ -152,7 +152,7 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
     user_id: 'u2',
     user: { full_name: 'Marie Lefevre' },
     project_id: '2',
-    action: 'a ajoute un commentaire sur',
+    action: 'a ajouté un commentaire sur',
     details: 'Maison Martin',
     entity_type: 'comment',
     entity_id: 'cm1',
@@ -163,7 +163,7 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
     user_id: 'u1',
     user: { full_name: 'Jean Dupont' },
     project_id: '3',
-    action: 'a importe les plans PRO de',
+    action: 'a importé les plans PRO de',
     details: 'Bureaux Nextech',
     entity_type: 'document',
     entity_id: 'd2',
@@ -323,8 +323,8 @@ function getStatusLabel(status: string): string {
   const labels: Record<string, string> = {
     active: 'Actif',
     on_hold: 'En pause',
-    completed: 'Termine',
-    cancelled: 'Annule',
+    completed: 'Terminé',
+    cancelled: 'Annulé',
   };
   return labels[status] || status;
 }
@@ -451,7 +451,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Tableau de bord</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Bienvenue, Jean. Voici un apercu de votre activite.
+            Bienvenue, Jean. Voici un apercu de votre activité.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -826,7 +826,7 @@ export default function DashboardPage() {
         {/* Activity Feed */}
         <div className="rounded-xl border border-gray-200 bg-white">
           <div className="border-b border-gray-100 px-5 py-4">
-            <h2 className="text-base font-semibold text-gray-900">Activite recente</h2>
+            <h2 className="text-base font-semibold text-gray-900">Activité recente</h2>
           </div>
           <div className="divide-y divide-gray-50">
             {mockActivities.map((activity) => {
@@ -860,7 +860,7 @@ export default function DashboardPage() {
               href="/dashboard/activity"
               className="text-sm font-medium text-primary hover:text-primary-hover transition-colors"
             >
-              Voir toute l&apos;activite
+              Voir toute l&apos;activité
             </Link>
           </div>
         </div>

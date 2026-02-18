@@ -110,7 +110,7 @@ const INVOICE_STATUSES = [
   { label: 'Payees', percent: 65, count: 92, color: '#059669' },
   { label: 'En attente', percent: 20, count: 28, color: '#f59e0b' },
   { label: 'En retard', percent: 10, count: 14, color: '#dc2626' },
-  { label: 'Annulees', percent: 5, count: 8, color: '#9ca3af' },
+  { label: 'Annulées', percent: 5, count: 8, color: '#9ca3af' },
 ];
 
 const MONTHLY_COMPARISON = [

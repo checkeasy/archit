@@ -155,7 +155,7 @@ const FAQ_ITEMS: FAQItem[] = [
     category: 'documents',
     question: 'Comment organiser mes documents par projet ?',
     answer:
-      'Chaque projet dispose d\'un espace de stockage structuré avec une arborescence prédéfinie : Plans (ESQ, APS, APD, PRO, EXE), Documents administratifs (PC, AT, assurances), Photos (chantier, existant), Correspondance et Divers. Vous pouvez personnaliser cette arborescence dans les paramètres du projet. Utilisez le glisser-déposer pour importer des fichiers et les organiser dans les dossiers. La recherche globale permet de retrouver n\'importe quel document par nom, contenu ou métadonnées. Le versionnage automatique conserve l\'historique de chaque fichier modifié.',
+      'Chaque projet dispose d\'un espace de stockage structuré avec une arborescence prédéfinie : Plans (ESQ, APS, APD, PRO, EXE), Documents administratifs (PC, AT, assurances), Photos (chantier, existant), Correspondance et Divers. Vous pouvez personnaliser cette arborescence dans les paramètres du projet. Utilisez le glisser-déposer pour importer des fichiers et les organiser dans les dossiers. La recherche globale permet de retrouver n\'importé quel document par nom, contenu ou métadonnées. Le versionnage automatique conserve l\'historique de chaque fichier modifié.',
   },
   {
     id: 'faq-9',

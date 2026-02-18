@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   User,
   Building2,
@@ -13,6 +14,10 @@ import {
   EyeOff,
   Save,
   Trash2,
+  CreditCard,
+  Plug,
+  Users,
+  ChevronRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Profile } from '@/types';
@@ -102,7 +107,7 @@ export default function SettingsPage() {
     mockProfile.siret || ''
   );
 
-  // Notification preferences
+  // Notification préférences
   const [emailNotifs, setEmailNotifs] = useState(true);
   const [projectUpdates, setProjectUpdates] = useState(true);
   const [invoiceReminders, setInvoiceReminders] = useState(true);
@@ -163,10 +168,66 @@ export default function SettingsPage() {
     <div className="mx-auto max-w-3xl space-y-6">
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Parametres</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Paramètres</h1>
         <p className="mt-1 text-sm text-gray-500">
-          Gerez votre profil, votre cabinet et vos preferences.
+          Gérez votre profil, votre cabinet et vos préférences.
         </p>
+      </div>
+
+      {/* Settings sub-pages navigation */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Link
+          href="/dashboard/settings/profile"
+          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#EFF6FF', color: '#2563EB' }}>
+            <User className="h-5 w-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-gray-900">Profil</p>
+            <p className="text-xs text-gray-500">Informations personnelles</p>
+          </div>
+          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
+        </Link>
+        <Link
+          href="/dashboard/settings/team"
+          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#F5F3FF', color: '#7C3AED' }}>
+            <Users className="h-5 w-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-gray-900">Équipe</p>
+            <p className="text-xs text-gray-500">Gestion des membres</p>
+          </div>
+          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
+        </Link>
+        <Link
+          href="/dashboard/settings/billing"
+          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#ECFDF5', color: '#059669' }}>
+            <CreditCard className="h-5 w-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-gray-900">Facturation</p>
+            <p className="text-xs text-gray-500">Plans et paiements</p>
+          </div>
+          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
+        </Link>
+        <Link
+          href="/dashboard/settings/integrations"
+          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#FFF7ED', color: '#EA580C' }}>
+            <Plug className="h-5 w-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-gray-900">Intégrations</p>
+            <p className="text-xs text-gray-500">API et services tiers</p>
+          </div>
+          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
+        </Link>
       </div>
 
       {/* ============================================ */}
@@ -241,13 +302,13 @@ export default function SettingsPage() {
               )}
             />
             <p className="mt-1 text-xs text-gray-400">
-              L&apos;email ne peut pas etre modifie
+              L&apos;email ne peut pas être modifié
             </p>
           </div>
 
           <div>
             <label htmlFor="phone" className={labelClassName}>
-              Telephone
+              Téléphone
             </label>
             <input
               id="phone"
@@ -437,7 +498,7 @@ export default function SettingsPage() {
               Notifications
             </h2>
             <p className="text-xs text-gray-500">
-              Configurez vos preferences de notification
+              Configurez vos préférences de notification
             </p>
           </div>
         </div>
@@ -452,20 +513,20 @@ export default function SettingsPage() {
           <ToggleSwitch
             enabled={projectUpdates}
             onChange={setProjectUpdates}
-            label="Mises a jour des projets"
-            description="Soyez informe des changements de statut et des nouvelles taches"
+            label="Mises à jour des projets"
+            description="Soyez informé des changements de statut et des nouvelles tâches"
           />
           <ToggleSwitch
             enabled={invoiceReminders}
             onChange={setInvoiceReminders}
             label="Rappels de facturation"
-            description="Rappels pour les factures en attente et les echeances"
+            description="Rappels pour les factures en attente et les échéances"
           />
           <ToggleSwitch
             enabled={weeklySummary}
             onChange={setWeeklySummary}
-            label="Resume hebdomadaire"
-            description="Recevez un resume de l'activite chaque lundi matin"
+            label="Résumé hebdomadaire"
+            description="Recevez un résumé de l'activité chaque lundi matin"
           />
         </div>
       </div>
@@ -480,7 +541,7 @@ export default function SettingsPage() {
           </div>
           <div>
             <h2 className="text-base font-semibold text-gray-900">
-              Securite
+              Sécurité
             </h2>
             <p className="text-xs text-gray-500">
               Modifiez votre mot de passe
@@ -608,7 +669,7 @@ export default function SettingsPage() {
               Zone dangereuse
             </h2>
             <p className="text-xs text-red-500">
-              Actions irreversibles sur votre compte
+              Actions irréversibles sur votre compte
             </p>
           </div>
         </div>
@@ -620,8 +681,8 @@ export default function SettingsPage() {
                 Supprimer le compte
               </p>
               <p className="text-xs text-gray-500">
-                Cette action supprimera definitivement votre compte et toutes
-                vos donnees. Cette action est irreversible.
+                Cette action supprimera définitivement votre compte et toutes
+                vos données. Cette action est irréversible.
               </p>
             </div>
             <button
@@ -635,7 +696,7 @@ export default function SettingsPage() {
         ) : (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4">
             <p className="text-sm font-medium text-red-800 mb-3">
-              Etes-vous absolument certain ? Tapez{' '}
+              Êtes-vous absolument certain ? Tapez{' '}
               <span className="font-mono font-bold">SUPPRIMER</span> pour
               confirmer.
             </p>
@@ -661,7 +722,7 @@ export default function SettingsPage() {
                 }}
                 className="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-white transition-colors"
               >
-                Annuler
+                Annulér
               </button>
             </div>
           </div>

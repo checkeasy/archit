@@ -261,7 +261,7 @@ function NewClientModal({ isOpen, onClose, onSave }: NewClientModalProps) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Telephone
+                Téléphone
               </label>
               <input
                 type="tel"
@@ -379,7 +379,7 @@ function NewClientModal({ isOpen, onClose, onSave }: NewClientModalProps) {
               onClick={onClose}
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              Annuler
+              Annulér
             </button>
             <button
               type="submit"

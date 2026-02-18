@@ -37,7 +37,7 @@ const PHASE_OPTIONS = [
 // ============================================
 // Helper: generate reference
 // ============================================
-function generateReference(): string {
+function generateRéférence(): string {
   const num = Math.floor(10000 + Math.random() * 90000);
   return `PRJ-${num}`;
 }
@@ -110,10 +110,10 @@ export default function NewProjectPage() {
   const router = useRouter();
 
   const [name, setName] = useState('');
-  const [reference, setReference] = useState('PRJ-00000');
+  const [reference, setRéférence] = useState('PRJ-00000');
 
   useEffect(() => {
-    setReference(generateReference());
+    setRéférence(generateRéférence());
   }, []);
   const [clientId, setClientId] = useState('');
   const [description, setDescription] = useState('');
@@ -201,13 +201,13 @@ export default function NewProjectPage() {
                 />
               </div>
 
-              {/* Reference */}
+              {/* Référence */}
               <div>
-                <label style={labelStyle}>Reference</label>
+                <label style={labelStyle}>Référence</label>
                 <input
                   type="text"
                   value={reference}
-                  onChange={(e) => setReference(e.target.value)}
+                  onChange={(e) => setRéférence(e.target.value)}
                   placeholder="PRJ-XXXXX"
                   style={{ ...inputStyle, backgroundColor: '#f9fafb', color: '#6b7280' }}
                   onFocus={(e) => {
@@ -282,9 +282,9 @@ export default function NewProjectPage() {
                 </select>
               </div>
 
-              {/* Date de debut */}
+              {/* Date de début */}
               <div>
-                <label style={labelStyle}>Date de debut</label>
+                <label style={labelStyle}>Date de début</label>
                 <input
                   type="date"
                   value={startDate}
@@ -295,9 +295,9 @@ export default function NewProjectPage() {
                 />
               </div>
 
-              {/* Date de fin estimee */}
+              {/* Date de fin estimée */}
               <div>
-                <label style={labelStyle}>Date de fin estimee</label>
+                <label style={labelStyle}>Date de fin estimée</label>
                 <input
                   type="date"
                   value={endDate}
@@ -427,7 +427,7 @@ export default function NewProjectPage() {
                 cursor: 'pointer',
               }}
             >
-              Annuler
+              Annulér
             </button>
           </Link>
           <button

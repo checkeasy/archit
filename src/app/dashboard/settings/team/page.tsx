@@ -204,7 +204,7 @@ function ActionDropdown({ member }: { member: TeamMember }) {
   const actions = member.isPending
     ? [
         { label: 'Renvoyer l’invitation', icon: RefreshCw, color: '#2563EB' },
-        { label: 'Annuler l’invitation', icon: XCircle, color: '#DC2626' },
+        { label: 'Annulér l’invitation', icon: XCircle, color: '#DC2626' },
       ]
     : [
         { label: 'Modifier le rôle', icon: Edit3, color: '#4B5563' },
@@ -569,7 +569,7 @@ function InviteModal({ onClose }: { onClose: () => void }) {
                 e.currentTarget.style.backgroundColor = '#FFFFFF';
               }}
             >
-              Annuler
+              Annulér
             </button>
             <button
               onClick={handleSend}

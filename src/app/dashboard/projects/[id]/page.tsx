@@ -208,7 +208,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'a1',
         action: 'document_upload',
-        description: 'A importe "Plans RDC - Phase DCE v3.dwg"',
+        description: 'A importé "Plans RDC - Phase DCE v3.dwg"',
         user_name: 'Jean Dupont',
         created_at: '2026-02-14T15:00:00Z',
         icon_type: 'document',
@@ -216,7 +216,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'a2',
         action: 'task_completed',
-        description: 'A termine "Mise a jour du planning general"',
+        description: 'A terminé "Mise a jour du planning general"',
         user_name: 'Jean Dupont',
         created_at: '2026-02-15T10:30:00Z',
         icon_type: 'task',
@@ -224,7 +224,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'a3',
         action: 'comment_added',
-        description: 'A ajoute un commentaire sur le projet',
+        description: 'A ajouté un commentaire sur le projet',
         user_name: 'Pierre Martin',
         created_at: '2026-02-12T16:45:00Z',
         icon_type: 'comment',
@@ -232,7 +232,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'a4',
         action: 'phase_changed',
-        description: 'Phase du projet changee de PRO a DCE',
+        description: 'Phase du projet changée de PRO a DCE',
         user_name: 'Jean Dupont',
         created_at: '2026-02-01T09:00:00Z',
         icon_type: 'phase',
@@ -240,7 +240,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'a5',
         action: 'task_created',
-        description: 'A cree la tache "Consultation entreprises - Lot Electricite"',
+        description: 'A créé la tâche "Consultation entreprises - Lot Electricite"',
         user_name: 'Marie Laurent',
         created_at: '2026-02-10T11:20:00Z',
         icon_type: 'task',
@@ -255,10 +255,10 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
 
 function getTaskStatusLabel(status: TaskStatus): string {
   const labels: Record<TaskStatus, string> = {
-    todo: 'A faire',
+    todo: 'À faire',
     in_progress: 'En cours',
     review: 'En revue',
-    done: 'Termine',
+    done: 'Terminé',
   };
   return labels[status] || status;
 }
@@ -295,8 +295,8 @@ function getStatusLabel(status: string): string {
   const labels: Record<string, string> = {
     active: 'Actif',
     on_hold: 'En pause',
-    completed: 'Termine',
-    cancelled: 'Annule',
+    completed: 'Terminé',
+    cancelled: 'Annulé',
   };
   return labels[status] || status;
 }
@@ -364,13 +364,13 @@ function getActivityIconColor(iconType: string): string {
 // Tab Types
 // ============================================
 
-type TabKey = 'taches' | 'documents' | 'commentaires' | 'activite';
+type TabKey = 'tâches' | 'documents' | 'commentaires' | 'activité';
 
 const TABS: { key: TabKey; label: string; icon: React.ElementType }[] = [
-  { key: 'taches', label: 'Taches', icon: ClipboardList },
+  { key: 'tâches', label: 'Tâches', icon: ClipboardList },
   { key: 'documents', label: 'Documents', icon: FileText },
   { key: 'commentaires', label: 'Commentaires', icon: MessageSquare },
-  { key: 'activite', label: 'Activite', icon: Activity },
+  { key: 'activité', label: 'Activité', icon: Activity },
 ];
 
 // ============================================
@@ -382,13 +382,13 @@ export default function ProjectDetailPage() {
   const router = useRouter();
   const projectId = params.id as string;
 
-  const [activeTab, setActiveTab] = useState<TabKey>('taches');
+  const [activeTab, setActiveTab] = useState<TabKey>('tâches');
   const [commentText, setCommentText] = useState('');
 
   // Get project data (fallback for unknown IDs)
   const project = MOCK_PROJECTS[projectId] || MOCK_PROJECTS['1'];
 
-  // Determine current phase index for timeline
+  // Determiné current phase index for timeline
   const currentPhaseIndex = PROJECT_PHASES.findIndex((p) => p.key === project.phase);
 
   return (
@@ -542,7 +542,7 @@ export default function ProjectDetailPage() {
                 <FolderOpen className="h-4 w-4 text-gray-500" />
               </div>
               <div>
-                <p className="text-xs text-gray-400">Reference</p>
+                <p className="text-xs text-gray-400">Référence</p>
                 <p className="text-sm font-mono text-gray-900">{project.reference}</p>
               </div>
             </div>
@@ -585,7 +585,7 @@ export default function ProjectDetailPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">Date de debut</span>
+                  <span className="text-sm text-gray-600">Date de début</span>
                 </div>
                 <span className="text-sm font-medium text-gray-900">
                   {project.start_date ? formatDate(project.start_date) : '-'}
@@ -594,7 +594,7 @@ export default function ProjectDetailPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">Date de fin estimee</span>
+                  <span className="text-sm text-gray-600">Date de fin estimée</span>
                 </div>
                 <span className="text-sm font-medium text-gray-900">
                   {project.end_date ? formatDate(project.end_date) : '-'}
@@ -620,10 +620,10 @@ export default function ProjectDetailPage() {
             const Icon = tab.icon;
             const isActive = activeTab === tab.key;
             let count = 0;
-            if (tab.key === 'taches') count = project.tasks.length;
+            if (tab.key === 'tâches') count = project.tasks.length;
             if (tab.key === 'documents') count = project.documents.length;
             if (tab.key === 'commentaires') count = project.comments.length;
-            if (tab.key === 'activite') count = project.activities.length;
+            if (tab.key === 'activité') count = project.activities.length;
 
             return (
               <button
@@ -652,15 +652,15 @@ export default function ProjectDetailPage() {
       {/* Tab Content */}
       <div>
         {/* ===== TACHES TAB ===== */}
-        {activeTab === 'taches' && (
+        {activeTab === 'tâches' && (
           <div className="space-y-3">
             <div className="flex items-center justify-between mb-2">
               <p className="text-sm text-gray-500">
-                {project.tasks.length} tache{project.tasks.length !== 1 ? 's' : ''}
+                {project.tasks.length} tâche{project.tasks.length !== 1 ? 's' : ''}
               </p>
               <button className="inline-flex items-center gap-2 rounded-lg bg-[#2563EB] px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
                 <Plus className="h-4 w-4" />
-                Ajouter une tache
+                Ajouter une tâche
               </button>
             </div>
             {project.tasks.map((task) => {
@@ -811,7 +811,7 @@ export default function ProjectDetailPage() {
         )}
 
         {/* ===== ACTIVITE TAB ===== */}
-        {activeTab === 'activite' && (
+        {activeTab === 'activité' && (
           <div className="space-y-0">
             {project.activities.map((activity, index) => {
               const IconComp = getActivityIcon(activity.icon_type);

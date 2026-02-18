@@ -78,7 +78,7 @@ const categoryConfig: Record<
 };
 
 const categoryOptions: { value: DocumentCategory | 'all'; label: string }[] = [
-  { value: 'all', label: 'Toutes les categories' },
+  { value: 'all', label: 'Toutes les catégories' },
   { value: 'plan', label: 'Plans' },
   { value: 'render', label: 'Rendus 3D' },
   { value: 'contract', label: 'Contrats' },
@@ -315,7 +315,7 @@ export default function DocumentsPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Documents</h1>
           <p className="mt-1 text-sm text-gray-500">
-            {filteredDocuments.length} document{filteredDocuments.length !== 1 ? 's' : ''} trouves
+            {filteredDocuments.length} document{filteredDocuments.length !== 1 ? 's' : ''} trouvés
           </p>
         </div>
         <button
@@ -504,7 +504,7 @@ export default function DocumentsPage() {
                     <div className="absolute right-0 top-8 z-10 w-40 rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
                       <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
                         <Download className="h-4 w-4" />
-                        Telecharger
+                        Télécharger
                       </button>
                       <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50">
                         <Trash2 className="h-4 w-4" />
@@ -568,7 +568,7 @@ export default function DocumentsPage() {
                 <div className="mt-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity pt-3 border-t border-gray-100">
                   <button className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">
                     <Download className="h-3.5 w-3.5" />
-                    Telecharger
+                    Télécharger
                   </button>
                   <button className="flex items-center justify-center gap-1.5 rounded-lg border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 transition-colors">
                     <Trash2 className="h-3.5 w-3.5" />
@@ -592,7 +592,7 @@ export default function DocumentsPage() {
                     Projet
                   </th>
                   <th className="hidden md:table-cell px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Categorie
+                    Catégorie
                   </th>
                   <th className="hidden lg:table-cell px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Taille
