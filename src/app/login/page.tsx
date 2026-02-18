@@ -35,7 +35,7 @@ export default function LoginPage() {
 
       router.push('/dashboard');
     } catch {
-      setError('Une erreur inattendue est survenue. Veuillez reessayer.');
+      setError('Une erreur inattendue est survenue. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }

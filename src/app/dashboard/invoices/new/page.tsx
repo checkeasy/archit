@@ -277,9 +277,9 @@ export default function NewInvoicePage() {
     setTimeout(() => {
       setIsSaving(false);
       if (action === 'draft') {
-        alert(`Facture ${invoiceNumber} enregistree en brouillon.`);
+        alert(`Facture ${invoiceNumber} enregistrée en brouillon.`);
       } else {
-        alert(`Facture ${invoiceNumber} envoyee avec succes.`);
+        alert(`Facture ${invoiceNumber} envoyée avec succès.`);
       }
       router.push('/dashboard/invoices');
     }, 600);

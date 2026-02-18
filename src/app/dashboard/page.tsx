@@ -174,7 +174,7 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
     user_id: 'u3',
     user: { full_name: 'Sophie Bernard' },
     project_id: '4',
-    action: 'a cree une facture pour',
+    action: 'a créé une facture pour',
     details: 'Restaurant Le Comptoir',
     entity_type: 'invoice',
     entity_id: 'inv1',

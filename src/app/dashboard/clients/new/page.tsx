@@ -128,7 +128,7 @@ export default function NewClientPage() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    toast.success('Client cree avec succes !');
+    toast.success('Client créé avec succès !');
     setSubmitting(false);
     router.push('/dashboard/clients');
   };

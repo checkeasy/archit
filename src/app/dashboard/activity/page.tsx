@@ -106,7 +106,7 @@ const AVATAR_COLORS: Record<string, string> = {
 // ============================================
 
 const MOCK_ACTIVITIES: ActivityItem[] = [
-  // Aujourd'hui - 18 fevrier 2026
+  // Aujourd'hui - 18 février 2026
   {
     id: 'a01',
     type: 'phase_update',
@@ -168,7 +168,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     timestamp: '2026-02-18T08:05:00',
   },
 
-  // Hier - 17 fevrier 2026
+  // Hier - 17 février 2026
   {
     id: 'a06',
     type: 'phase_update',
@@ -230,17 +230,17 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     timestamp: '2026-02-17T10:30:00',
   },
 
-  // Lundi 16 fevrier 2026
+  // Lundi 16 février 2026
   {
     id: 'a11',
     type: 'invoice',
     userName: 'Sophie Bernard',
     avatarColor: AVATAR_COLORS['Sophie Bernard'],
-    description: 'a envoye la facture FAC-00244 pour',
+    description: 'a envoyé la facture FAC-00244 pour',
     projectName: 'Restaurant Le Comptoir',
     projectId: '4',
     time: '17:00',
-    dateGroup: 'Lundi 16 fevrier',
+    dateGroup: 'Lundi 16 février',
     timestamp: '2026-02-16T17:00:00',
   },
   {
@@ -252,7 +252,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Maison Martin',
     projectId: '2',
     time: '15:30',
-    dateGroup: 'Lundi 16 fevrier',
+    dateGroup: 'Lundi 16 février',
     timestamp: '2026-02-16T15:30:00',
   },
   {
@@ -264,7 +264,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Maison Martin',
     projectId: '2',
     time: '14:00',
-    dateGroup: 'Lundi 16 fevrier',
+    dateGroup: 'Lundi 16 février',
     timestamp: '2026-02-16T14:00:00',
   },
   {
@@ -276,7 +276,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Ecole Montessori',
     projectId: '5',
     time: '11:15',
-    dateGroup: 'Lundi 16 fevrier',
+    dateGroup: 'Lundi 16 février',
     timestamp: '2026-02-16T11:15:00',
   },
   {
@@ -288,11 +288,11 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Residence Les Terrasses',
     projectId: '1',
     time: '09:45',
-    dateGroup: 'Lundi 16 fevrier',
+    dateGroup: 'Lundi 16 février',
     timestamp: '2026-02-16T09:45:00',
   },
 
-  // Vendredi 13 fevrier 2026
+  // Vendredi 13 février 2026
   {
     id: 'a16',
     type: 'client',
@@ -302,7 +302,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Nextech SAS',
     projectId: null,
     time: '16:40',
-    dateGroup: 'Vendredi 13 fevrier',
+    dateGroup: 'Vendredi 13 février',
     timestamp: '2026-02-13T16:40:00',
   },
   {
@@ -314,7 +314,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Bureaux Nextech',
     projectId: '3',
     time: '15:20',
-    dateGroup: 'Vendredi 13 fevrier',
+    dateGroup: 'Vendredi 13 février',
     timestamp: '2026-02-13T15:20:00',
   },
   {
@@ -326,7 +326,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Ecole Montessori',
     projectId: '5',
     time: '14:00',
-    dateGroup: 'Vendredi 13 fevrier',
+    dateGroup: 'Vendredi 13 février',
     timestamp: '2026-02-13T14:00:00',
   },
   {
@@ -338,7 +338,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Maison Martin',
     projectId: '2',
     time: '11:30',
-    dateGroup: 'Vendredi 13 fevrier',
+    dateGroup: 'Vendredi 13 février',
     timestamp: '2026-02-13T11:30:00',
   },
   {
@@ -350,11 +350,11 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Restaurant Le Comptoir',
     projectId: '4',
     time: '09:00',
-    dateGroup: 'Vendredi 13 fevrier',
+    dateGroup: 'Vendredi 13 février',
     timestamp: '2026-02-13T09:00:00',
   },
 
-  // Jeudi 12 fevrier 2026
+  // Jeudi 12 février 2026
   {
     id: 'a21',
     type: 'meeting',
@@ -364,7 +364,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Residence Les Terrasses',
     projectId: '1',
     time: '16:00',
-    dateGroup: 'Jeudi 12 fevrier',
+    dateGroup: 'Jeudi 12 février',
     timestamp: '2026-02-12T16:00:00',
   },
   {
@@ -376,7 +376,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Restaurant Le Comptoir',
     projectId: '4',
     time: '14:30',
-    dateGroup: 'Jeudi 12 fevrier',
+    dateGroup: 'Jeudi 12 février',
     timestamp: '2026-02-12T14:30:00',
   },
   {
@@ -388,7 +388,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Ecole Montessori',
     projectId: '5',
     time: '11:00',
-    dateGroup: 'Jeudi 12 fevrier',
+    dateGroup: 'Jeudi 12 février',
     timestamp: '2026-02-12T11:00:00',
   },
   {
@@ -400,7 +400,7 @@ const MOCK_ACTIVITIES: ActivityItem[] = [
     projectName: 'Maison Martin',
     projectId: '2',
     time: '09:15',
-    dateGroup: 'Jeudi 12 fevrier',
+    dateGroup: 'Jeudi 12 février',
     timestamp: '2026-02-12T09:15:00',
   },
 ];

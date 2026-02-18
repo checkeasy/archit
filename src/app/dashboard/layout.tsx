@@ -277,7 +277,7 @@ export default function DashboardLayout({
             <button
               onClick={handleLogout}
               disabled={loggingOut}
-              title="Se deconnecter"
+              title="Se déconnecter"
               className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors disabled:opacity-50"
             >
               <LogOut className="h-4 w-4" />

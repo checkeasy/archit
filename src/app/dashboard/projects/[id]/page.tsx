@@ -188,7 +188,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'cm1',
         user_name: 'Jean Dupont',
-        content: 'J\'ai mis a jour les plans du RDC pour integrer les remarques du bureau de controle. Les reserves sur les sorties de secours ont ete levees.',
+        content: 'J\'ai mis à jour les plans du RDC pour intégrer les remarques du bureau de contrôle. Les réserves sur les sorties de secours ont été levées.',
         created_at: '2026-02-16T14:30:00Z',
       },
       {

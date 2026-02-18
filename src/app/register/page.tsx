@@ -20,7 +20,7 @@ export default function RegisterPage() {
     setError(null);
 
     if (password.length < 6) {
-      setError('Le mot de passe doit contenir au moins 6 caracteres.');
+      setError('Le mot de passe doit contenir au moins 6 caractères.');
       return;
     }
 
@@ -43,7 +43,7 @@ export default function RegisterPage() {
 
       if (authError) {
         if (authError.message.includes('already registered')) {
-          setError('Un compte existe deja avec cette adresse email.');
+          setError('Un compte existe déjà avec cette adresse email.');
         } else {
           setError(authError.message);
         }
@@ -52,7 +52,7 @@ export default function RegisterPage() {
 
       setSuccess(true);
     } catch {
-      setError('Une erreur inattendue est survenue. Veuillez reessayer.');
+      setError('Une erreur inattendue est survenue. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -118,12 +118,12 @@ export default function RegisterPage() {
               </svg>
             </div>
             <h2 style={{ fontSize: '18px', fontWeight: 600, color: '#111827', marginBottom: '8px', marginTop: 0 }}>
-              Compte cree avec succes
+              Compte créé avec succès
             </h2>
             <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '24px' }}>
-              Un email de confirmation a ete envoye a{' '}
+              Un email de confirmation a été envoyé à{' '}
               <span style={{ fontWeight: 500, color: '#374151' }}>{email}</span>.
-              Veuillez verifier votre boite de reception pour activer votre compte.
+              Veuillez vérifier votre boîte de réception pour activer votre compte.
             </p>
             <Link
               href="/login"
@@ -142,7 +142,7 @@ export default function RegisterPage() {
                 boxSizing: 'border-box',
               }}
             >
-              Retour a la connexion
+              Retour à la connexion
             </Link>
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function RegisterPage() {
             ArchiPro
           </h1>
           <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>
-            Creez votre compte pour commencer
+            Créez votre compte pour commencer
           </p>
         </div>
 
@@ -307,7 +307,7 @@ export default function RegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="new-password"
-                placeholder="Minimum 6 caracteres"
+                placeholder="Minimum 6 caractères"
                 style={{
                   width: '100%',
                   padding: '10px 14px',
@@ -378,13 +378,13 @@ export default function RegisterPage() {
               onMouseEnter={(e) => { if (!loading) (e.target as HTMLButtonElement).style.backgroundColor = '#1d4ed8'; }}
               onMouseLeave={(e) => { if (!loading) (e.target as HTMLButtonElement).style.backgroundColor = '#2563EB'; }}
             >
-              {loading ? 'Creation en cours...' : 'Creer mon compte'}
+              {loading ? 'Création en cours...' : 'Créer mon compte'}
             </button>
           </form>
         </div>
 
         <p style={{ textAlign: 'center', fontSize: '14px', color: '#6b7280', marginTop: '24px' }}>
-          Deja un compte ?{' '}
+          Déjà un compte ?{' '}
           <Link href="/login" style={{ color: '#2563EB', fontWeight: 500, textDecoration: 'none' }}>
             Se connecter
           </Link>

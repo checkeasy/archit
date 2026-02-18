@@ -140,7 +140,7 @@ export default function NewProjectPage() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    toast.success('Projet cree avec succes !');
+    toast.success('Projet créé avec succès !');
     setSubmitting(false);
     router.push('/dashboard/projects');
   };
@@ -171,7 +171,7 @@ export default function NewProjectPage() {
             Nouveau projet
           </h1>
           <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '2px' }}>
-            Creez un nouveau projet d&apos;architecture
+            Créez un nouveau projet d&apos;architecture
           </p>
         </div>
       </div>

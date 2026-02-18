@@ -16,7 +16,7 @@ const features = [
     icon: FolderKanban,
     title: 'Gestion de projets',
     description:
-      'Suivez chaque phase de vos projets, de l\'esquisse a la livraison. 12 phases architecturales integrees.',
+      'Suivez chaque phase de vos projets, de l\'esquisse à la livraison. 12 phases architecturales intégrées.',
     color: '#2563EB',
     bg: '#EFF6FF',
   },
@@ -24,7 +24,7 @@ const features = [
     icon: Users,
     title: 'CRM Clients',
     description:
-      'Centralisez vos contacts, historique et communications. Particuliers, professionnels et marches publics.',
+      'Centralisez vos contacts, historique et communications. Particuliers, professionnels et marchés publics.',
     color: '#7C3AED',
     bg: '#F5F3FF',
   },
@@ -32,7 +32,7 @@ const features = [
     icon: FileText,
     title: 'Devis et Factures',
     description:
-      'Creez des devis professionnels et generez vos factures en un clic. Suivi des paiements automatise.',
+      'Créez des devis professionnels et générez vos factures en un clic. Suivi des paiements automatisé.',
     color: '#059669',
     bg: '#ECFDF5',
   },
@@ -40,7 +40,7 @@ const features = [
     icon: Files,
     title: 'Documents',
     description:
-      'Organisez vos plans, rendus 3D, contrats et permis. Versioning et partage securise.',
+      'Organisez vos plans, rendus 3D, contrats et permis. Versioning et partage sécurisé.',
     color: '#D97706',
     bg: '#FFFBEB',
   },
@@ -56,7 +56,7 @@ const features = [
     icon: MessageSquare,
     title: 'Collaboration',
     description:
-      'Travaillez en equipe avec des commentaires, notifications et suivi d\'activite en temps reel.',
+      'Travaillez en équipe avec des commentaires, notifications et suivi d\'activité en temps réel.',
     color: '#0891B2',
     bg: '#ECFEFF',
   },
@@ -64,15 +64,15 @@ const features = [
 
 const stats = [
   { value: '500+', label: 'Cabinets d\'architecture' },
-  { value: '12 000+', label: 'Projets geres' },
+  { value: '12 000+', label: 'Projets gérés' },
   { value: '98%', label: 'Satisfaction client' },
-  { value: '45min', label: 'Gagnes par jour' },
+  { value: '45min', label: 'Gagnées par jour' },
 ];
 
 const steps = [
   {
     number: '1',
-    title: 'Creez votre compte',
+    title: 'Créez votre compte',
     description: 'Inscription gratuite, sans carte bancaire.',
   },
   {
@@ -82,7 +82,7 @@ const steps = [
   },
   {
     number: '3',
-    title: 'Gerez tout depuis un seul espace',
+    title: 'Gérez tout depuis un seul espace',
     description: 'Projets, devis, factures, documents.',
   },
 ];
@@ -92,7 +92,7 @@ const plans = [
     name: 'Solo',
     price: '29',
     period: '/mois',
-    description: 'Pour les architectes independants',
+    description: 'Pour les architectes indépendants',
     popular: false,
     features: ['1 utilisateur', '10 projets actifs', 'Devis & Factures', 'Support email'],
   },
@@ -104,8 +104,8 @@ const plans = [
     popular: true,
     features: [
       '5 utilisateurs',
-      'Projets illimites',
-      'Collaboration equipe',
+      'Projets illimités',
+      'Collaboration équipe',
       'Support prioritaire',
     ],
   },
@@ -116,10 +116,10 @@ const plans = [
     description: 'Pour les grandes structures',
     popular: false,
     features: [
-      'Utilisateurs illimites',
-      'Acces API',
+      'Utilisateurs illimités',
+      'Accès API',
       'SSO / SAML',
-      'Account manager dedie',
+      'Account manager dédié',
     ],
   },
 ];
@@ -163,15 +163,15 @@ export default function LandingPage() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" style={{ fontSize: 14, color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}>
-              Fonctionnalites
-            </a>
-            <a href="#pricing" style={{ fontSize: 14, color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}>
+            <Link href="/features" style={{ fontSize: 14, color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}>
+              Fonctionnalités
+            </Link>
+            <Link href="/pricing" style={{ fontSize: 14, color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}>
               Tarifs
-            </a>
-            <a href="#contact" style={{ fontSize: 14, color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}>
+            </Link>
+            <Link href="/contact" style={{ fontSize: 14, color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}>
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Auth Buttons */}
@@ -230,7 +230,7 @@ export default function LandingPage() {
             }}
           >
             <Building2 size={14} />
-            Concu par des architectes, pour des architectes
+            Conçu par des architectes, pour des architectes
           </div>
 
           <h1
@@ -257,8 +257,8 @@ export default function LandingPage() {
               margin: '0 auto 40px',
             }}
           >
-            Gerez vos projets, clients, devis et factures depuis un seul espace.
-            Concu par des architectes, pour des architectes.
+            Gérez vos projets, clients, devis et factures depuis un seul espace.
+            Conçu par des architectes, pour des architectes.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4" style={{ marginBottom: 48 }}>
@@ -293,12 +293,12 @@ export default function LandingPage() {
                 border: '1px solid #D1D5DB',
               }}
             >
-              Voir la demo
+              Voir la démo
             </Link>
           </div>
 
           <p style={{ fontSize: 14, color: '#9CA3AF' }}>
-            Utilise par plus de 500 cabinets d&apos;architecture en France
+            Utilisé par plus de 500 cabinets d&apos;architecture en France
           </p>
         </div>
       </section>
@@ -319,7 +319,7 @@ export default function LandingPage() {
               Tout ce dont vous avez besoin
             </h2>
             <p style={{ fontSize: 18, color: '#6B7280', maxWidth: 560, margin: '0 auto' }}>
-              Des outils puissants pour gerer chaque aspect de votre cabinet d&apos;architecture.
+              Des outils puissants pour gérer chaque aspect de votre cabinet d&apos;architecture.
             </p>
           </div>
 
@@ -390,10 +390,10 @@ export default function LandingPage() {
                 marginBottom: 16,
               }}
             >
-              Pret en 3 minutes
+              Prêt en 3 minutes
             </h2>
             <p style={{ fontSize: 18, color: '#6B7280' }}>
-              Commencez a utiliser ArchiPro en quelques etapes simples.
+              Commencez à utiliser ArchiPro en quelques étapes simples.
             </p>
           </div>
 
@@ -443,7 +443,7 @@ export default function LandingPage() {
               Des tarifs simples et transparents
             </h2>
             <p style={{ fontSize: 18, color: '#6B7280', maxWidth: 480, margin: '0 auto' }}>
-              Choisissez le plan adapte a la taille de votre cabinet.
+              Choisissez le plan adapté à la taille de votre cabinet.
             </p>
           </div>
 
@@ -505,7 +505,7 @@ export default function LandingPage() {
                 </ul>
 
                 <Link
-                  href={plan.price === 'Sur mesure' ? '#contact' : '/register'}
+                  href={plan.price === 'Sur mesure' ? '/contact' : '/register'}
                   className="flex items-center justify-center"
                   style={{
                     width: '100%',
@@ -545,10 +545,10 @@ export default function LandingPage() {
               marginBottom: 16,
             }}
           >
-            Pret a simplifier la gestion de votre cabinet ?
+            Prêt à simplifier la gestion de votre cabinet ?
           </h2>
           <p style={{ fontSize: 18, color: '#6B7280', marginBottom: 40 }}>
-            Rejoignez les 500+ cabinets qui font confiance a ArchiPro.
+            Rejoignez les 500+ cabinets qui font confiance à ArchiPro.
           </p>
           <Link
             href="/register"
@@ -606,9 +606,9 @@ export default function LandingPage() {
               Produit
             </h4>
             <ul className="flex flex-col gap-3" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              <li><a href="#features" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Fonctionnalites</a></li>
-              <li><a href="#pricing" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Tarifs</a></li>
-              <li><Link href="/login" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Demo</Link></li>
+              <li><Link href="/features" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Fonctionnalités</Link></li>
+              <li><Link href="/pricing" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Tarifs</Link></li>
+              <li><Link href="/login" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Démo</Link></li>
             </ul>
           </div>
 
@@ -627,12 +627,12 @@ export default function LandingPage() {
           {/* Legal */}
           <div>
             <h4 style={{ fontSize: 13, fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>
-              Legal
+              Légal
             </h4>
             <ul className="flex flex-col gap-3" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              <li><a href="#" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Mentions legales</a></li>
+              <li><a href="#" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Mentions légales</a></li>
               <li><a href="#" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>CGV</a></li>
-              <li><a href="#" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Confidentialite</a></li>
+              <li><a href="#" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Confidentialité</a></li>
               <li><a href="#" style={{ fontSize: 14, color: '#9CA3AF', textDecoration: 'none' }}>Cookies</a></li>
             </ul>
           </div>
@@ -651,7 +651,7 @@ export default function LandingPage() {
 
         <div style={{ maxWidth: 1200, margin: '0 auto', paddingTop: 32, textAlign: 'center' }}>
           <p style={{ fontSize: 13, color: '#6B7280' }}>
-            &copy; 2026 ArchiPro. Tous droits reserves.
+            &copy; 2026 ArchiPro. Tous droits réservés.
           </p>
         </div>
       </footer>
