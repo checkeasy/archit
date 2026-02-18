@@ -16,6 +16,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { formatCurrency, getPhaseLabel, getStatusColor, getInitials } from '@/lib/utils';
+import { PROJECT_PHASES } from '@/lib/constants';
 import type { Project, DashboardStats, ActivityLog, ProjectPhase, ProjectStatus } from '@/types';
 
 // ============================================
@@ -204,6 +205,60 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
 ];
 
 // ============================================
+// Sparkline & Chart Data
+// ============================================
+
+const sparklineData = {
+  projets: [8, 9, 9, 10, 10, 11, 12],
+  clients: [28, 29, 30, 31, 32, 33, 34],
+  factures: [3, 5, 4, 6, 5, 4, 5],
+  chiffre: [22000, 24500, 25000, 23000, 26000, 27500, 28400],
+};
+
+const revenueData = [
+  { month: 'Sep 2025', amount: 18500 },
+  { month: 'Oct 2025', amount: 22300 },
+  { month: 'Nov 2025', amount: 24800 },
+  { month: 'Dec 2025', amount: 19200 },
+  { month: 'Jan 2026', amount: 26100 },
+  { month: 'Fev 2026', amount: 28400 },
+];
+
+const phaseDistribution = [
+  { key: 'esquisse', count: 1 },
+  { key: 'aps', count: 1 },
+  { key: 'apd', count: 1 },
+  { key: 'pro', count: 1 },
+  { key: 'dce', count: 1 },
+  { key: 'act', count: 1 },
+  { key: 'visa', count: 1 },
+  { key: 'det', count: 1 },
+  { key: 'delivered', count: 1 },
+  { key: 'prospect', count: 1 },
+];
+
+// ============================================
+// Helper: create SVG sparkline path
+// ============================================
+function createSparklinePath(data: number[], width: number, height: number): string {
+  if (data.length < 2) return '';
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  const padding = 2;
+  const usableHeight = height - padding * 2;
+  const stepX = width / (data.length - 1);
+
+  const points = data.map((value, index) => {
+    const x = index * stepX;
+    const y = padding + usableHeight - ((value - min) / range) * usableHeight;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+
+  return points.join(' ');
+}
+
+// ============================================
 // Helper: relative time in French
 // ============================================
 function timeAgo(dateStr: string): string {
@@ -221,7 +276,7 @@ function timeAgo(dateStr: string): string {
 }
 
 // ============================================
-// Helper: phase color
+// Helper: phase color (Tailwind classes)
 // ============================================
 function getPhaseColor(phase: string): string {
   const colors: Record<string, string> = {
@@ -239,6 +294,14 @@ function getPhaseColor(phase: string): string {
     delivered: 'bg-emerald-50 text-emerald-700',
   };
   return colors[phase] || 'bg-gray-100 text-gray-700';
+}
+
+// ============================================
+// Helper: get phase hex color from constants
+// ============================================
+function getPhaseHexColor(phaseKey: string): string {
+  const found = PROJECT_PHASES.find((p) => p.key === phaseKey);
+  return found ? found.color : '#94a3b8';
 }
 
 // ============================================
@@ -267,42 +330,117 @@ function getStatusLabel(status: string): string {
 }
 
 // ============================================
+// Sub-component: Sparkline SVG
+// ============================================
+function Sparkline({
+  data,
+  color,
+  width = 100,
+  height = 32,
+}: {
+  data: number[];
+  color: string;
+  width?: number;
+  height?: number;
+}) {
+  const points = createSparklinePath(data, width, height);
+  // Create area fill path
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  const padding = 2;
+  const usableHeight = height - padding * 2;
+  const stepX = width / (data.length - 1);
+
+  const areaPoints = data.map((value, index) => {
+    const x = index * stepX;
+    const y = padding + usableHeight - ((value - min) / range) * usableHeight;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+
+  const areaPath = `M0,${height} L${areaPoints.join(' L')} L${width},${height} Z`;
+
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      style={{ display: 'block', overflow: 'visible' }}
+    >
+      <defs>
+        <linearGradient id={`grad-${color.replace('#', '')}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.15" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
+      <path
+        d={areaPath}
+        fill={`url(#grad-${color.replace('#', '')})`}
+      />
+      <polyline
+        points={points}
+        fill="none"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// ============================================
 // Component
 // ============================================
 export default function DashboardPage() {
+  const maxRevenue = Math.max(...revenueData.map((d) => d.amount));
+  const maxPhaseCount = Math.max(...phaseDistribution.map((d) => d.count));
+
   const kpiCards = [
     {
       label: 'Projets actifs',
       value: mockStats.activeProjects.toString(),
       icon: FolderKanban,
-      accentBg: 'bg-blue-50',
-      accentText: 'text-blue-600',
+      iconBg: '#EFF6FF',
+      iconColor: '#2563EB',
       change: '+2 ce mois',
+      changeColor: '#16a34a',
+      sparkData: sparklineData.projets,
+      sparkColor: '#2563EB',
     },
     {
       label: 'Clients',
       value: mockStats.totalClients.toString(),
       icon: Users,
-      accentBg: 'bg-emerald-50',
-      accentText: 'text-emerald-600',
+      iconBg: '#ECFDF5',
+      iconColor: '#059669',
       change: '+3 ce mois',
+      changeColor: '#16a34a',
+      sparkData: sparklineData.clients,
+      sparkColor: '#059669',
     },
     {
       label: 'Factures en attente',
       value: mockStats.pendingInvoices.toString(),
       subValue: formatCurrency(mockStats.pendingAmount),
       icon: Receipt,
-      accentBg: 'bg-amber-50',
-      accentText: 'text-amber-600',
+      iconBg: '#FFFBEB',
+      iconColor: '#D97706',
       change: null,
+      changeColor: '#D97706',
+      sparkData: sparklineData.factures,
+      sparkColor: '#D97706',
     },
     {
       label: 'Chiffre du mois',
       value: formatCurrency(mockStats.monthlyRevenue),
       icon: TrendingUp,
-      accentBg: 'bg-emerald-50',
-      accentText: 'text-emerald-600',
+      iconBg: '#ECFDF5',
+      iconColor: '#059669',
       change: '+12% vs mois dernier',
+      changeColor: '#16a34a',
+      sparkData: sparklineData.chiffre,
+      sparkColor: '#059669',
     },
   ];
 
@@ -319,21 +457,21 @@ export default function DashboardPage() {
         <div className="flex flex-wrap gap-2">
           <Link
             href="/dashboard/projects/new"
-            className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)] transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
           >
             <Plus className="h-4 w-4" />
             Nouveau projet
           </Link>
           <Link
             href="/dashboard/clients/new"
-            className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
           >
             <Users className="h-4 w-4" />
             Nouveau client
           </Link>
           <Link
             href="/dashboard/quotes/new"
-            className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
           >
             <FileText className="h-4 w-4" />
             Nouveau devis
@@ -348,26 +486,230 @@ export default function DashboardPage() {
           return (
             <div
               key={card.label}
-              className="rounded-xl border border-gray-200 bg-white p-5"
+              style={{
+                backgroundColor: '#ffffff',
+                border: '1px solid #e5e7eb',
+                borderRadius: '12px',
+                padding: '20px',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)',
+                transition: 'box-shadow 0.2s ease',
+              }}
             >
               <div className="flex items-start justify-between">
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-500">{card.label}</p>
-                  <p className="text-2xl font-bold text-gray-900">{card.value}</p>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{ fontSize: '13px', fontWeight: 500, color: '#6b7280', marginBottom: '6px' }}>
+                    {card.label}
+                  </p>
+                  <p style={{ fontSize: '26px', fontWeight: 700, color: '#111827', lineHeight: 1.2 }}>
+                    {card.value}
+                  </p>
                   {card.subValue && (
-                    <p className="text-sm font-medium text-gray-600">{card.subValue}</p>
+                    <p style={{ fontSize: '13px', fontWeight: 500, color: '#4b5563', marginTop: '4px' }}>
+                      {card.subValue}
+                    </p>
                   )}
                   {card.change && (
-                    <p className="text-xs text-gray-400">{card.change}</p>
+                    <p style={{ fontSize: '12px', color: card.changeColor, fontWeight: 500, marginTop: '6px' }}>
+                      {card.change}
+                    </p>
                   )}
                 </div>
-                <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${card.accentBg}`}>
-                  <Icon className={`h-5 w-5 ${card.accentText}`} />
+                <div className="flex flex-col items-end gap-2">
+                  <div
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '10px',
+                      backgroundColor: card.iconBg,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Icon style={{ width: '20px', height: '20px', color: card.iconColor }} />
+                  </div>
+                  <Sparkline data={card.sparkData} color={card.sparkColor} width={100} height={32} />
                 </div>
               </div>
             </div>
           );
         })}
+      </div>
+
+      {/* Revenue Chart + Phase Distribution */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Revenue Bar Chart */}
+        <div
+          className="lg:col-span-2"
+          style={{
+            backgroundColor: '#ffffff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)',
+          }}
+        >
+          <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
+            <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#111827' }}>
+              Chiffre d&apos;affaires mensuel
+            </h2>
+            <p style={{ fontSize: '13px', color: '#6b7280' }}>6 derniers mois</p>
+          </div>
+          <div className="space-y-3">
+            {revenueData.map((item) => {
+              const barWidth = (item.amount / maxRevenue) * 100;
+              return (
+                <div key={item.month} className="flex items-center gap-3">
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 500,
+                      color: '#6b7280',
+                      width: '72px',
+                      flexShrink: 0,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {item.month.replace('2025', '25').replace('2026', '26')}
+                  </p>
+                  <div style={{ flex: 1, position: 'relative' }}>
+                    <div
+                      style={{
+                        backgroundColor: '#F3F4F6',
+                        borderRadius: '6px',
+                        height: '28px',
+                        width: '100%',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: '#2563EB',
+                          height: '100%',
+                          width: `${barWidth}%`,
+                          borderRadius: '6px',
+                          transition: 'width 0.6s ease',
+                          minWidth: '4px',
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: '#111827',
+                      width: '80px',
+                      flexShrink: 0,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {formatCurrency(item.amount)}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div
+            style={{
+              marginTop: '16px',
+              paddingTop: '16px',
+              borderTop: '1px solid #f3f4f6',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <p style={{ fontSize: '13px', color: '#6b7280' }}>
+              Total periode : <span style={{ fontWeight: 600, color: '#111827' }}>{formatCurrency(revenueData.reduce((s, d) => s + d.amount, 0))}</span>
+            </p>
+            <p style={{ fontSize: '13px', color: '#16a34a', fontWeight: 500 }}>
+              +12% vs periode precedente
+            </p>
+          </div>
+        </div>
+
+        {/* Phase Distribution */}
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)',
+          }}
+        >
+          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#111827', marginBottom: '20px' }}>
+            Repartition par phase
+          </h2>
+          <div className="space-y-2">
+            {phaseDistribution.map((item) => {
+              const barWidth = (item.count / maxPhaseCount) * 100;
+              const color = getPhaseHexColor(item.key);
+              return (
+                <div key={item.key} className="flex items-center gap-2">
+                  <p
+                    style={{
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      color: '#4b5563',
+                      width: '60px',
+                      flexShrink: 0,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {getPhaseLabel(item.key)}
+                  </p>
+                  <div style={{ flex: 1 }}>
+                    <div
+                      style={{
+                        backgroundColor: '#F3F4F6',
+                        borderRadius: '4px',
+                        height: '22px',
+                        width: '100%',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: color,
+                          height: '100%',
+                          width: `${barWidth}%`,
+                          borderRadius: '4px',
+                          transition: 'width 0.6s ease',
+                          minWidth: '4px',
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: '#111827',
+                      width: '24px',
+                      flexShrink: 0,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {item.count}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div
+            style={{
+              marginTop: '16px',
+              paddingTop: '16px',
+              borderTop: '1px solid #f3f4f6',
+            }}
+          >
+            <p style={{ fontSize: '13px', color: '#6b7280' }}>
+              Total : <span style={{ fontWeight: 600, color: '#111827' }}>{phaseDistribution.reduce((s, d) => s + d.count, 0)} projets</span>
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Main Grid: Recent Projects + Activity Feed */}
@@ -378,7 +720,7 @@ export default function DashboardPage() {
             <h2 className="text-base font-semibold text-gray-900">Projets recents</h2>
             <Link
               href="/dashboard/projects"
-              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors"
+              className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
             >
               Voir tout
               <ArrowRight className="h-4 w-4" />
@@ -491,7 +833,7 @@ export default function DashboardPage() {
               const Icon = getActivityIcon(activity.action);
               return (
                 <div key={activity.id} className="flex gap-3 px-5 py-3.5">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary-light)] text-[var(--color-primary)] text-xs font-semibold">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary text-xs font-semibold">
                     {getInitials(activity.user?.full_name || 'U')}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -516,9 +858,9 @@ export default function DashboardPage() {
           <div className="border-t border-gray-100 px-5 py-3">
             <Link
               href="/dashboard/activity"
-              className="text-sm font-medium text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors"
+              className="text-sm font-medium text-primary hover:text-primary-hover transition-colors"
             >
-              Voir toute l'activite
+              Voir toute l&apos;activite
             </Link>
           </div>
         </div>

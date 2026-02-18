@@ -411,7 +411,7 @@ export default function ProjectsPage() {
 
           <Link
             href="/dashboard/projects/new"
-            className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)] transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
           >
             <Plus className="h-4 w-4" />
             Nouveau projet
@@ -428,13 +428,13 @@ export default function ProjectsPage() {
             placeholder="Rechercher un projet, client, reference..."
             value={search}
             onChange={(e) => handleFilterChange(setSearch, e.target.value)}
-            className="w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+            className="w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => handleFilterChange(setStatusFilter, e.target.value)}
-          className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-700 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+          className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
         >
           {STATUS_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -445,7 +445,7 @@ export default function ProjectsPage() {
         <select
           value={phaseFilter}
           onChange={(e) => handleFilterChange(setPhaseFilter, e.target.value)}
-          className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-700 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+          className="rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
         >
           <option value="">Toutes les phases</option>
           {PROJECT_PHASES.map((phase) => (
@@ -498,7 +498,7 @@ export default function ProjectsPage() {
                       <td className="px-5 py-3.5">
                         <Link
                           href={`/dashboard/projects/${project.id}`}
-                          className="text-sm font-mono text-gray-500 hover:text-[var(--color-primary)]"
+                          className="text-sm font-mono text-gray-500 hover:text-primary"
                         >
                           {project.reference}
                         </Link>
@@ -508,7 +508,7 @@ export default function ProjectsPage() {
                           href={`/dashboard/projects/${project.id}`}
                           className="block"
                         >
-                          <p className="text-sm font-medium text-gray-900 hover:text-[var(--color-primary)]">
+                          <p className="text-sm font-medium text-gray-900 hover:text-primary">
                             {project.name}
                           </p>
                           <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
@@ -535,7 +535,7 @@ export default function ProjectsPage() {
                         <div className="flex items-center gap-2">
                           <div className="h-1.5 w-20 rounded-full bg-gray-100">
                             <div
-                              className="h-1.5 rounded-full bg-[var(--color-primary)] transition-all"
+                              className="h-1.5 rounded-full bg-primary transition-all"
                               style={{ width: `${progress}%` }}
                             />
                           </div>
@@ -589,7 +589,7 @@ export default function ProjectsPage() {
                     <div className="flex items-center gap-2">
                       <div className="h-1.5 w-16 rounded-full bg-gray-100">
                         <div
-                          className="h-1.5 rounded-full bg-[var(--color-primary)]"
+                          className="h-1.5 rounded-full bg-primary"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -642,7 +642,7 @@ export default function ProjectsPage() {
                     className={cn(
                       'h-8 w-8 rounded-md text-sm font-medium transition-colors',
                       currentPage === page
-                        ? 'bg-[var(--color-primary)] text-white'
+                        ? 'bg-primary text-white'
                         : 'text-gray-600 hover:bg-gray-50'
                     )}
                   >
@@ -698,7 +698,7 @@ export default function ProjectsPage() {
                       <Link
                         key={project.id}
                         href={`/dashboard/projects/${project.id}`}
-                        className="block rounded-lg border border-gray-200 bg-white p-3 hover:border-[var(--color-primary)] hover:shadow-sm transition-all"
+                        className="block rounded-lg border border-gray-200 bg-white p-3 hover:border-primary hover:shadow-sm transition-all"
                       >
                         <p className="text-sm font-medium text-gray-900 mb-1">
                           {project.name}
@@ -764,7 +764,7 @@ export default function ProjectsPage() {
                   value={newProject.name}
                   onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
                   placeholder="Ex: Residence Les Terrasses"
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                 />
               </div>
 
@@ -780,7 +780,7 @@ export default function ProjectsPage() {
                   }
                   rows={3}
                   placeholder="Description du projet..."
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors resize-none"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
                 />
               </div>
 
@@ -794,7 +794,7 @@ export default function ProjectsPage() {
                   onChange={(e) =>
                     setNewProject({ ...newProject, client_id: e.target.value })
                   }
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                 >
                   <option value="">Selectionner un client</option>
                   {mockClients.map((c) => (
@@ -818,7 +818,7 @@ export default function ProjectsPage() {
                       phase: e.target.value as ProjectPhase,
                     })
                   }
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                 >
                   {PROJECT_PHASES.map((phase) => (
                     <option key={phase.key} value={phase.key}>
@@ -844,7 +844,7 @@ export default function ProjectsPage() {
                       setNewProject({ ...newProject, budget: e.target.value })
                     }
                     placeholder="250 000"
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -861,7 +861,7 @@ export default function ProjectsPage() {
                       setNewProject({ ...newProject, surface_m2: e.target.value })
                     }
                     placeholder="200"
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -881,7 +881,7 @@ export default function ProjectsPage() {
                     setNewProject({ ...newProject, address: e.target.value })
                   }
                   placeholder="12 rue des Lilas, 69003 Lyon"
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                 />
               </div>
 
@@ -900,7 +900,7 @@ export default function ProjectsPage() {
                     onChange={(e) =>
                       setNewProject({ ...newProject, start_date: e.target.value })
                     }
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -916,7 +916,7 @@ export default function ProjectsPage() {
                     onChange={(e) =>
                       setNewProject({ ...newProject, end_date: e.target.value })
                     }
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
+                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -933,7 +933,7 @@ export default function ProjectsPage() {
               <button
                 onClick={handleCreateProject}
                 disabled={!newProject.name.trim()}
-                className="rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Creer le projet
               </button>

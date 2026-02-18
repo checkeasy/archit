@@ -15,13 +15,16 @@ import {
   FileText,
   Receipt,
   Files,
+  Calendar,
   Settings,
   Menu,
   X,
   Bell,
+  Search,
   LogOut,
   type LucideIcon,
 } from 'lucide-react';
+import CommandPalette from '@/components/CommandPalette';
 
 // Map icon string names from constants to actual Lucide components
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -31,6 +34,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   FileText,
   Receipt,
   Files,
+  Calendar,
   Settings,
 };
 
@@ -291,8 +295,57 @@ export default function DashboardLayout({
           </h1>
         </div>
 
-        {/* Right side: notifications + user avatar */}
+        {/* Right side: search + notifications + user avatar */}
         <div className="flex items-center gap-2">
+          {/* Search / Command Palette trigger */}
+          <button
+            onClick={() => window.dispatchEvent(new Event('open-command-palette'))}
+            className="hidden sm:flex items-center"
+            style={{
+              gap: '8px',
+              padding: '6px 12px',
+              borderRadius: '8px',
+              border: '1px solid #e5e7eb',
+              backgroundColor: '#f9fafb',
+              color: '#9ca3af',
+              fontSize: '13px',
+              cursor: 'pointer',
+              transition: 'all 150ms ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#d1d5db';
+              e.currentTarget.style.backgroundColor = '#f3f4f6';
+              e.currentTarget.style.color = '#6b7280';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#e5e7eb';
+              e.currentTarget.style.backgroundColor = '#f9fafb';
+              e.currentTarget.style.color = '#9ca3af';
+            }}
+          >
+            <Search style={{ width: '14px', height: '14px' }} />
+            <span>Rechercher...</span>
+            <kbd
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1px 6px',
+                fontSize: '11px',
+                fontWeight: 600,
+                fontFamily: 'inherit',
+                color: '#9ca3af',
+                backgroundColor: '#ffffff',
+                border: '1px solid #d1d5db',
+                borderRadius: '4px',
+                boxShadow: '0 1px 0 #e5e7eb',
+                marginLeft: '4px',
+              }}
+            >
+              ⌘K
+            </kbd>
+          </button>
+
           {/* Notification bell */}
           <button className="relative p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors">
             <Bell className="h-5 w-5" />
@@ -326,6 +379,9 @@ export default function DashboardLayout({
           {children}
         </div>
       </main>
+
+      {/* Global command palette (Cmd+K / Ctrl+K) */}
+      <CommandPalette />
     </div>
   );
 }

@@ -7,6 +7,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Devis', href: '/dashboard/quotes', icon: 'FileText' },
   { label: 'Factures', href: '/dashboard/invoices', icon: 'Receipt' },
   { label: 'Documents', href: '/dashboard/documents', icon: 'Files' },
+  { label: 'Planning', href: '/dashboard/calendar', icon: 'Calendar' },
   { label: 'Paramètres', href: '/dashboard/settings', icon: 'Settings' },
 ];
 

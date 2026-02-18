@@ -7,11 +7,6 @@ export async function middleware(request: NextRequest) {
 
   // Dev mode: skip auth, allow all access
   if (isDevMode) {
-    if (request.nextUrl.pathname === '/') {
-      const url = request.nextUrl.clone();
-      url.pathname = '/dashboard';
-      return NextResponse.redirect(url);
-    }
     return NextResponse.next({ request });
   }
 
@@ -60,9 +55,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (request.nextUrl.pathname === '/') {
+  if (request.nextUrl.pathname === '/' && user) {
     const url = request.nextUrl.clone();
-    url.pathname = user ? '/dashboard' : '/login';
+    url.pathname = '/dashboard';
     return NextResponse.redirect(url);
   }
 
