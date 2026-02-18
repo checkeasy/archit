@@ -12,10 +12,21 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const isDevMode = supabaseUrl.includes('your-project') || !supabaseUrl;
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
+    // Dev mode: accept any credentials and redirect
+    if (isDevMode) {
+      await new Promise((r) => setTimeout(r, 400));
+      setLoading(false);
+      router.push('/dashboard');
+      return;
+    }
 
     try {
       const supabase = createClient();
@@ -39,6 +50,15 @@ export default function LoginPage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleDemoLogin() {
+    setEmail('jean.dupont@cabinet-archi.fr');
+    setPassword('demo1234');
+    setLoading(true);
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 500);
   }
 
   return (
@@ -198,6 +218,36 @@ export default function LoginPage() {
               {loading ? 'Connexion en cours...' : 'Se connecter'}
             </button>
           </form>
+
+          {/* Demo access button (dev mode only) */}
+          {isDevMode && (
+            <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #e5e7eb' }}>
+              <p style={{ fontSize: '12px', color: '#9ca3af', textAlign: 'center', marginBottom: '12px' }}>
+                Mode démonstration
+              </p>
+              <button
+                type="button"
+                onClick={handleDemoLogin}
+                disabled={loading}
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  backgroundColor: '#f0fdf4',
+                  color: '#059669',
+                  border: '1px solid #bbf7d0',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  transition: 'all 150ms ease',
+                }}
+                onMouseEnter={(e) => { if (!loading) { e.currentTarget.style.backgroundColor = '#dcfce7'; e.currentTarget.style.borderColor = '#86efac'; } }}
+                onMouseLeave={(e) => { if (!loading) { e.currentTarget.style.backgroundColor = '#f0fdf4'; e.currentTarget.style.borderColor = '#bbf7d0'; } }}
+              >
+                Accès démo — Jean Dupont, Architecte
+              </button>
+            </div>
+          )}
         </div>
 
         <p style={{ textAlign: 'center', fontSize: '14px', color: '#6b7280', marginTop: '24px' }}>
