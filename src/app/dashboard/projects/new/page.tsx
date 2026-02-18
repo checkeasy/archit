@@ -193,7 +193,7 @@ export default function NewProjectPage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ex: Residence Les Terrasses"
+                  placeholder="Ex: Résidence Les Terrasses"
                   required
                   style={inputStyle}
                   onFocus={(e) => (e.target.style.borderColor = '#2563EB')}
@@ -443,7 +443,7 @@ export default function NewProjectPage() {
             }}
           >
             <Save style={{ height: '16px', width: '16px' }} />
-            {submitting ? 'Creation...' : 'Creer le projet'}
+            {submitting ? 'Création...' : 'Créer le projet'}
           </button>
         </div>
       </form>

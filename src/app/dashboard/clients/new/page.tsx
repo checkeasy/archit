@@ -147,7 +147,7 @@ export default function NewClientPage() {
             Nouveau client
           </h1>
           <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '2px' }}>
-            Ajoutez un nouveau client a votre carnet
+            Ajoutez un nouveau client à votre carnet
           </p>
         </div>
       </div>
@@ -230,17 +230,17 @@ export default function NewClientPage() {
         </div>
 
         {/* =============================== */}
-        {/* Section 2: Societe               */}
+        {/* Section 2: Société               */}
         {/* =============================== */}
         <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>Societe</h2>
+          <h2 style={sectionTitleStyle}>Société</h2>
           <div>
-            <label style={labelStyle}>Societe / Organisme</label>
+            <label style={labelStyle}>Société / Organisme</label>
             <input
               type="text"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              placeholder="Nom de la societe (optionnel)"
+              placeholder="Nom de la société (optionnel)"
               style={inputStyle}
               onFocus={(e) => (e.target.style.borderColor = '#2563EB')}
               onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
@@ -351,7 +351,7 @@ export default function NewClientPage() {
             }}
           >
             <Save style={{ height: '16px', width: '16px' }} />
-            {submitting ? 'Creation...' : 'Creer le client'}
+            {submitting ? 'Création...' : 'Créer le client'}
           </button>
         </div>
       </form>

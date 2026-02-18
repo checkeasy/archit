@@ -23,8 +23,8 @@ type Period = 'month' | 'quarter' | 'year' | 'custom';
 const PERIODS: { value: Period; label: string }[] = [
   { value: 'month', label: 'Ce mois' },
   { value: 'quarter', label: 'Ce trimestre' },
-  { value: 'year', label: 'Cette annee' },
-  { value: 'custom', label: 'Personnalise' },
+  { value: 'year', label: 'Cette année' },
+  { value: 'custom', label: 'Personnalisé' },
 ];
 
 const KPI_DATA = [
@@ -32,15 +32,15 @@ const KPI_DATA = [
     label: "Chiffre d'affaires",
     value: '284 500 \u20AC',
     change: '+18%',
-    changeLabel: 'vs annee precedente',
+    changeLabel: 'vs année précédente',
     positive: true,
     icon: Euro,
   },
   {
-    label: 'Projets livres',
+    label: 'Projets livrés',
     value: '8',
     change: '+3',
-    changeLabel: 'vs annee precedente',
+    changeLabel: 'vs année précédente',
     positive: true,
     icon: Building2,
   },
@@ -48,15 +48,15 @@ const KPI_DATA = [
     label: 'Taux de conversion devis',
     value: '72%',
     change: '+5%',
-    changeLabel: 'vs annee precedente',
+    changeLabel: 'vs année précédente',
     positive: true,
     icon: BarChart3,
   },
   {
-    label: 'Delai moyen de paiement',
+    label: 'Délai moyen de paiement',
     value: '34 jours',
     change: '-8 jours',
-    changeLabel: 'vs annee precedente',
+    changeLabel: 'vs année précédente',
     positive: true,
     icon: Calendar,
   },
@@ -64,25 +64,25 @@ const KPI_DATA = [
     label: 'Marge moyenne',
     value: '28%',
     change: '+2%',
-    changeLabel: 'vs annee precedente',
+    changeLabel: 'vs année précédente',
     positive: true,
     icon: PieChart,
   },
 ];
 
 const REVENUE_MONTHS = [
-  'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun',
-  'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun',
+  'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc',
 ];
 const REVENUE_VALUES = [18500, 22300, 28100, 31200, 24800, 26400, 19200, 32100, 28400, 35200, 29800, 38500];
 const REVENUE_MAX = 40000;
 
 const PROJECT_TYPES = [
-  { label: 'Residentiel', percent: 45, count: 12, color: '#2563EB' },
+  { label: 'Résidentiel', percent: 45, count: 12, color: '#2563EB' },
   { label: 'Tertiaire', percent: 25, count: 7, color: '#7c3aed' },
   { label: 'Public', percent: 15, count: 4, color: '#059669' },
   { label: 'Commercial', percent: 10, count: 3, color: '#f59e0b' },
-  { label: 'Renovation', percent: 5, count: 1, color: '#ef4444' },
+  { label: 'Rénovation', percent: 5, count: 1, color: '#ef4444' },
 ];
 
 const TOP_CLIENTS = [
@@ -94,20 +94,20 @@ const TOP_CLIENTS = [
 ];
 
 const PHASE_DATA = [
-  { phase: 'Esquisse', projets: 3, duree: '4 semaines', budget: '12 000 \u20AC', marge: '32%' },
-  { phase: 'APS', projets: 2, duree: '6 semaines', budget: '18 500 \u20AC', marge: '30%' },
-  { phase: 'APD', projets: 4, duree: '8 semaines', budget: '24 000 \u20AC', marge: '28%' },
-  { phase: 'PRO', projets: 3, duree: '10 semaines', budget: '35 000 \u20AC', marge: '26%' },
-  { phase: 'DCE', projets: 2, duree: '5 semaines', budget: '15 000 \u20AC', marge: '31%' },
-  { phase: 'ACT', projets: 1, duree: '3 semaines', budget: '8 000 \u20AC', marge: '35%' },
-  { phase: 'VISA', projets: 2, duree: '12 semaines', budget: '28 000 \u20AC', marge: '25%' },
-  { phase: 'DET', projets: 3, duree: '20 semaines', budget: '42 000 \u20AC', marge: '22%' },
-  { phase: 'AOR', projets: 1, duree: '4 semaines', budget: '10 000 \u20AC', marge: '29%' },
-  { phase: 'Reception', projets: 2, duree: '2 semaines', budget: '6 000 \u20AC', marge: '34%' },
+  { phase: 'Esquisse', projets: 3, durée: '4 semaines', budget: '12 000 \u20AC', marge: '32%' },
+  { phase: 'APS', projets: 2, durée: '6 semaines', budget: '18 500 \u20AC', marge: '30%' },
+  { phase: 'APD', projets: 4, durée: '8 semaines', budget: '24 000 \u20AC', marge: '28%' },
+  { phase: 'PRO', projets: 3, durée: '10 semaines', budget: '35 000 \u20AC', marge: '26%' },
+  { phase: 'DCE', projets: 2, durée: '5 semaines', budget: '15 000 \u20AC', marge: '31%' },
+  { phase: 'ACT', projets: 1, durée: '3 semaines', budget: '8 000 \u20AC', marge: '35%' },
+  { phase: 'VISA', projets: 2, durée: '12 semaines', budget: '28 000 \u20AC', marge: '25%' },
+  { phase: 'DET', projets: 3, durée: '20 semaines', budget: '42 000 \u20AC', marge: '22%' },
+  { phase: 'AOR', projets: 1, durée: '4 semaines', budget: '10 000 \u20AC', marge: '29%' },
+  { phase: 'Réception', projets: 2, durée: '2 semaines', budget: '6 000 \u20AC', marge: '34%' },
 ];
 
 const INVOICE_STATUSES = [
-  { label: 'Payees', percent: 65, count: 92, color: '#059669' },
+  { label: 'Payées', percent: 65, count: 92, color: '#059669' },
   { label: 'En attente', percent: 20, count: 28, color: '#f59e0b' },
   { label: 'En retard', percent: 10, count: 14, color: '#dc2626' },
   { label: 'Annulées', percent: 5, count: 8, color: '#9ca3af' },
@@ -119,7 +119,7 @@ const MONTHLY_COMPARISON = [
   { month: 'Nov 2025', ca: '29 800 \u20AC', projets: 2, factures: 11, encaissement: '85%' },
   { month: 'Dec 2025', ca: '38 500 \u20AC', projets: 5, factures: 18, encaissement: '93%' },
   { month: 'Jan 2026', ca: '31 200 \u20AC', projets: 3, factures: 14, encaissement: '87%' },
-  { month: 'Fev 2026', ca: '26 800 \u20AC', projets: 2, factures: 10, encaissement: '82%' },
+  { month: 'Fév 2026', ca: '26 800 \u20AC', projets: 2, factures: 10, encaissement: '82%' },
 ];
 
 // ============================================
@@ -380,7 +380,7 @@ export default function ReportsPage() {
           }}
         >
           <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>
-            Evolution du chiffre d&apos;affaires
+            Évolution du chiffre d&apos;affaires
           </h2>
           <span style={{ fontSize: '12px', color: '#9ca3af' }}>Jan 2025 - Dec 2025</span>
         </div>
@@ -473,7 +473,7 @@ export default function ReportsPage() {
       >
         {/* Project types - horizontal bars */}
         <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>Repartition par type de projet</h2>
+          <h2 style={sectionTitleStyle}>Répartition par type de projet</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {PROJECT_TYPES.map((type) => (
               <div key={type.label}>
@@ -576,7 +576,7 @@ export default function ReportsPage() {
           >
             <thead>
               <tr>
-                {['Phase', 'Projets actifs', 'Duree moyenne', 'Budget moyen', 'Taux de marge'].map(
+                {['Phase', 'Projets actifs', 'Durée moyenne', 'Budget moyen', 'Taux de marge'].map(
                   (h) => (
                     <th
                       key={h}
@@ -617,7 +617,7 @@ export default function ReportsPage() {
                     {row.phase}
                   </td>
                   <td style={{ padding: '12px 16px', color: '#374151' }}>{row.projets}</td>
-                  <td style={{ padding: '12px 16px', color: '#374151' }}>{row.duree}</td>
+                  <td style={{ padding: '12px 16px', color: '#374151' }}>{row.durée}</td>
                   <td style={{ padding: '12px 16px', color: '#374151' }}>{row.budget}</td>
                   <td style={{ padding: '12px 16px' }}>
                     <span
@@ -726,7 +726,7 @@ export default function ReportsPage() {
           >
             <thead>
               <tr>
-                {['Mois', 'CA', 'Projets demarres', 'Factures emises', "Taux d'encaissement"].map(
+                {['Mois', 'CA', 'Projets démarrés', 'Factures émises', "Taux d'encaissement"].map(
                   (h) => (
                     <th
                       key={h}

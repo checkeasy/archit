@@ -42,7 +42,7 @@ const MOCK_CLIENTS: Record<string, Client & { project_count: number }> = {
     city: 'Paris',
     postal_code: '75002',
     notes:
-      'Cliente fidele depuis 2023. Projet de renovation d\'un appartement haussmannien dans le 2e arrondissement. Budget confirme. Souhaite conserver les moulures et parquets d\'epoque. Second projet en discussion pour un pied-a-terre a Deauville.',
+      'Cliente fidèle depuis 2023. Projet de rénovation d\'un appartement haussmannien dans le 2e arrondissement. Budget confirmé. Souhaite conserver les moulures et parquets d\'époque. Second projet en discussion pour un pied-à-terre à Deauville.',
     type: 'particulier',
     created_by: 'user-1',
     created_at: '2025-09-15T10:00:00Z',
@@ -59,7 +59,7 @@ const MOCK_CLIENTS: Record<string, Client & { project_count: number }> = {
     city: 'Lyon',
     postal_code: '69006',
     notes:
-      'Promoteur immobilier regional. Projets residentiels haut de gamme a Lyon et environs. Contact principal : JP Martin (DG). Paiement a 30 jours. Potentiel de 3-5 projets par an.',
+      'Promoteur immobilier régional. Projets résidentiels haut de gamme à Lyon et environs. Contact principal : JP Martin (DG). Paiement à 30 jours. Potentiel de 3-5 projets par an.',
     type: 'professionnel',
     created_by: 'user-1',
     created_at: '2025-08-20T14:30:00Z',
@@ -76,7 +76,7 @@ const MOCK_CLIENTS: Record<string, Client & { project_count: number }> = {
     city: 'Versailles',
     postal_code: '78000',
     notes:
-      'Marche public - renovation de la mediatheque centrale. Interlocuteur : Mme Leroy (direction urbanisme). Procedure formalisee, delais de paiement 45 jours.',
+      'Marché public - rénovation de la médiathèque centrale. Interlocuteur : Mme Leroy (direction urbanisme). Procédure formalisée, délais de paiement 45 jours.',
     type: 'public',
     created_by: 'user-1',
     created_at: '2025-07-10T11:00:00Z',
@@ -89,8 +89,8 @@ const MOCK_PROJECTS: Record<string, Project[]> = {
   'cl-001': [
     {
       id: 'proj-001',
-      name: 'Renovation Haussmannien Paix',
-      description: 'Renovation complete appartement 120m2',
+      name: 'Rénovation Haussmannien Paix',
+      description: 'Rénovation complète appartement 120m2',
       reference: 'PRJ-00012',
       client_id: 'cl-001',
       status: 'active',
@@ -108,8 +108,8 @@ const MOCK_PROJECTS: Record<string, Project[]> = {
     },
     {
       id: 'proj-007',
-      name: 'Pied-a-terre Deauville',
-      description: 'Etude de faisabilite pour un appartement bord de mer',
+      name: 'Pied-à-terre Deauville',
+      description: 'Étude de faisabilité pour un appartement bord de mer',
       reference: 'PRJ-00018',
       client_id: 'cl-001',
       status: 'active',
@@ -129,7 +129,7 @@ const MOCK_PROJECTS: Record<string, Project[]> = {
   'cl-002': [
     {
       id: 'proj-002',
-      name: 'Residence Les Terrasses',
+      name: 'Résidence Les Terrasses',
       description: 'Construction de 24 logements collectifs',
       reference: 'PRJ-00013',
       client_id: 'cl-002',
@@ -150,8 +150,8 @@ const MOCK_PROJECTS: Record<string, Project[]> = {
   'cl-004': [
     {
       id: 'proj-003',
-      name: 'Mediatheque Versailles',
-      description: 'Renovation et extension de la mediatheque centrale',
+      name: 'Médiathèque Versailles',
+      description: 'Rénovation et extension de la médiathèque centrale',
       reference: 'PRJ-00010',
       client_id: 'cl-004',
       status: 'active',
@@ -409,7 +409,7 @@ function EditClientModal({ isOpen, onClose, client }: EditClientModalProps) {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Societe / Organisme
+              Société / Organisme
             </label>
             <input
               type="text"
@@ -672,7 +672,7 @@ function InvoicesTab({ invoices }: { invoices: Invoice[] }) {
                 {invoice.invoice_number}
               </p>
               <p className="text-sm text-gray-500 mt-0.5">
-                Echeance : {invoice.due_date ? formatDate(invoice.due_date) : '-'}
+                Échéance : {invoice.due_date ? formatDate(invoice.due_date) : '-'}
               </p>
             </div>
             <div className="text-right">
@@ -682,9 +682,9 @@ function InvoicesTab({ invoices }: { invoices: Invoice[] }) {
                 {invoice.status === 'draft'
                   ? 'Brouillon'
                   : invoice.status === 'sent'
-                    ? 'Envoyee'
+                    ? 'Envoyée'
                     : invoice.status === 'paid'
-                      ? 'Payee'
+                      ? 'Payée'
                       : invoice.status === 'overdue'
                         ? 'En retard'
                         : 'Annulée'}
@@ -839,7 +839,7 @@ export default function ClientDetailPage() {
                     <Building2 className="w-4 h-4 text-violet-600" />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-400">Societe</p>
+                    <p className="text-xs text-gray-400">Société</p>
                     <p className="text-sm text-gray-900">{client.company}</p>
                   </div>
                 </div>
@@ -864,7 +864,7 @@ export default function ClientDetailPage() {
 
           {/* Stats Card */}
           <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900">Apercu</h3>
+            <h3 className="text-sm font-semibold text-gray-900">Aperçu</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">

@@ -31,11 +31,11 @@ const MOCK_CLIENTS = [
 ];
 
 const MOCK_PROJECTS = [
-  { id: 'p1', name: 'Residence Les Terrasses', clientId: 'c1' },
+  { id: 'p1', name: 'Résidence Les Terrasses', clientId: 'c1' },
   { id: 'p2', name: 'Maison Martin', clientId: 'c2' },
   { id: 'p3', name: 'Bureaux Nextech', clientId: 'c3' },
   { id: 'p4', name: 'Restaurant Le Comptoir', clientId: 'c4' },
-  { id: 'p5', name: 'Ecole Montessori', clientId: 'c5' },
+  { id: 'p5', name: 'École Montessori', clientId: 'c5' },
 ];
 
 const MOCK_QUOTES = [
@@ -317,7 +317,7 @@ export default function NewInvoicePage() {
               {/* Invoice Number */}
               <div>
                 <label style={labelStyle}>
-                  Numero de facture
+                  Numéro de facture
                 </label>
                 <input
                   type="text"
@@ -393,10 +393,10 @@ export default function NewInvoicePage() {
                 </select>
               </div>
 
-              {/* Date d'echeance */}
+              {/* Date d'échéance */}
               <div>
                 <label style={labelStyle}>
-                  Date d&apos;echeance
+                  Date d&apos;échéance
                 </label>
                 <input
                   type="date"
@@ -620,7 +620,7 @@ export default function NewInvoicePage() {
               )}
               {dueDate && (
                 <div className="flex items-center justify-between" style={{ fontSize: '13px', marginTop: '4px' }}>
-                  <span style={{ color: '#6b7280' }}>Echeance</span>
+                  <span style={{ color: '#6b7280' }}>Échéance</span>
                   <span style={{ fontWeight: 500, color: '#111827' }}>
                     {new Intl.DateTimeFormat('fr-FR').format(new Date(dueDate))}
                   </span>

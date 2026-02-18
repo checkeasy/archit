@@ -916,7 +916,7 @@ export default function SecuritySettingsPage() {
         </div>
 
         {/* ============================================ */}
-        {/* Section 4: Journal de securite */}
+        {/* Section 4: Journal de sécurité */}
         {/* ============================================ */}
         <div style={cardStyle}>
           <SectionHeader
@@ -1034,7 +1034,7 @@ export default function SecuritySettingsPage() {
         </div>
 
         {/* ============================================ */}
-        {/* Section 5: Confidentialite des donnees */}
+        {/* Section 5: Confidentialité des données */}
         {/* ============================================ */}
         <div style={cardStyle}>
           <SectionHeader

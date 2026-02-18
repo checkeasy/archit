@@ -90,8 +90,8 @@ interface ProjectDetail extends Project {
 const MOCK_PROJECTS: Record<string, ProjectDetail> = {
   '1': {
     id: '1',
-    name: 'Residence Les Terrasses',
-    description: 'Construction neuve R+3, 24 logements collectifs avec parking souterrain, espaces verts et local commercial en rez-de-chaussee.',
+    name: 'Résidence Les Terrasses',
+    description: 'Construction neuve R+3, 24 logements collectifs avec parking souterrain, espaces verts et local commercial en rez-de-chaussée.',
     reference: 'PRJ-00012',
     client_id: 'c1',
     client_name: 'SCI Les Terrasses',
@@ -194,7 +194,7 @@ const MOCK_PROJECTS: Record<string, ProjectDetail> = {
       {
         id: 'cm2',
         user_name: 'Marie Laurent',
-        content: 'Le client a valide les choix de materiaux pour les parties communes. On peut lancer la redaction des CCTP.',
+        content: 'Le client a validé les choix de matériaux pour les parties communes. On peut lancer la rédaction des CCTP.',
         created_at: '2026-02-14T09:15:00Z',
       },
       {

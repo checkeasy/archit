@@ -30,7 +30,7 @@ const mockInvoices: MockInvoice[] = [
     project_id: 'proj-001',
     client_id: 'cl-001',
     client_name: 'Marie Dubois',
-    project_name: 'Renovation Haussmannien Paix',
+    project_name: 'Rénovation Haussmannien Paix',
     invoice_number: 'FA-2026-0001',
     status: 'paid',
     subtotal: 6450,
@@ -51,7 +51,7 @@ const mockInvoices: MockInvoice[] = [
     project_id: 'proj-002',
     client_id: 'cl-002',
     client_name: 'Martin Immobilier SAS',
-    project_name: 'Residence Les Terrasses',
+    project_name: 'Résidence Les Terrasses',
     invoice_number: 'FA-2026-0002',
     status: 'sent',
     subtotal: 55500,
@@ -72,7 +72,7 @@ const mockInvoices: MockInvoice[] = [
     project_id: 'proj-003',
     client_id: 'cl-004',
     client_name: 'Commune de Versailles',
-    project_name: 'Mediatheque Versailles',
+    project_name: 'Médiathèque Versailles',
     invoice_number: 'FA-2026-0003',
     status: 'overdue',
     subtotal: 32000,
@@ -93,7 +93,7 @@ const mockInvoices: MockInvoice[] = [
     project_id: 'proj-001',
     client_id: 'cl-001',
     client_name: 'Marie Dubois',
-    project_name: 'Renovation Haussmannien Paix',
+    project_name: 'Rénovation Haussmannien Paix',
     invoice_number: 'FA-2026-0004',
     status: 'draft',
     subtotal: 8600,
@@ -114,7 +114,7 @@ const mockInvoices: MockInvoice[] = [
     project_id: 'proj-002',
     client_id: 'cl-002',
     client_name: 'Martin Immobilier SAS',
-    project_name: 'Residence Les Terrasses',
+    project_name: 'Résidence Les Terrasses',
     invoice_number: 'FA-2026-0005',
     status: 'paid',
     subtotal: 37000,
@@ -138,8 +138,8 @@ const mockInvoices: MockInvoice[] = [
 function getInvoiceStatusLabel(status: InvoiceStatus): string {
   const labels: Record<InvoiceStatus, string> = {
     draft: 'Brouillon',
-    sent: 'Envoyee',
-    paid: 'Payee',
+    sent: 'Envoyée',
+    paid: 'Payée',
     overdue: 'En retard',
     cancelled: 'Annulée',
   };
@@ -168,8 +168,8 @@ type FilterTab = 'all' | InvoiceStatus;
 const FILTER_TABS: { key: FilterTab; label: string }[] = [
   { key: 'all', label: 'Toutes' },
   { key: 'draft', label: 'Brouillon' },
-  { key: 'sent', label: 'Envoyee' },
-  { key: 'paid', label: 'Payee' },
+  { key: 'sent', label: 'Envoyée' },
+  { key: 'paid', label: 'Payée' },
   { key: 'overdue', label: 'En retard' },
 ];
 
@@ -252,14 +252,14 @@ export default function InvoicesPage() {
           </div>
         </div>
 
-        {/* Total paye ce mois */}
+        {/* Total payé ce mois */}
         <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100">
               <CheckCircle className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
-              <p className="text-sm font-medium text-emerald-700">Paye ce mois</p>
+              <p className="text-sm font-medium text-emerald-700">Payé ce mois</p>
               <p className="text-xl font-bold text-emerald-900">{formatCurrency(totalPaidThisMonth)}</p>
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function InvoicesPage() {
                   Statut
                 </th>
                 <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                  Date echeance
+                  Date échéance
                 </th>
                 <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                   Date paiement

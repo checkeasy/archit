@@ -31,7 +31,7 @@ const MOCK_CLIENTS: (Client & { project_count: number })[] = [
     address: '15 rue de la Paix',
     city: 'Paris',
     postal_code: '75002',
-    notes: 'Projet de renovation appartement haussmannien',
+    notes: 'Projet de rénovation appartement haussmannien',
     type: 'particulier',
     created_by: 'user-1',
     created_at: '2025-09-15T10:00:00Z',
@@ -47,7 +47,7 @@ const MOCK_CLIENTS: (Client & { project_count: number })[] = [
     address: '8 avenue Foch',
     city: 'Lyon',
     postal_code: '69006',
-    notes: 'Promoteur immobilier - projets residentiels',
+    notes: 'Promoteur immobilier - projets résidentiels',
     type: 'professionnel',
     created_by: 'user-1',
     created_at: '2025-08-20T14:30:00Z',
@@ -79,7 +79,7 @@ const MOCK_CLIENTS: (Client & { project_count: number })[] = [
     address: '4 place de la Loi',
     city: 'Versailles',
     postal_code: '78000',
-    notes: 'Marche public - renovation de la mediatheque centrale',
+    notes: 'Marché public - rénovation de la médiathèque centrale',
     type: 'public',
     created_by: 'user-1',
     created_at: '2025-07-10T11:00:00Z',
@@ -95,7 +95,7 @@ const MOCK_CLIENTS: (Client & { project_count: number })[] = [
     address: '12 boulevard Longchamp',
     city: 'Marseille',
     postal_code: '13001',
-    notes: 'Amenagement de bureaux professionnels',
+    notes: 'Aménagement de bureaux professionnels',
     type: 'professionnel',
     created_by: 'user-1',
     created_at: '2025-11-01T09:00:00Z',
@@ -277,7 +277,7 @@ function NewClientModal({ isOpen, onClose, onSave }: NewClientModalProps) {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Societe / Organisme
+              Société / Organisme
             </label>
             <input
               type="text"
@@ -286,7 +286,7 @@ function NewClientModal({ isOpen, onClose, onSave }: NewClientModalProps) {
                 setFormData({ ...formData, company: e.target.value })
               }
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-              placeholder="Nom de la societe (optionnel)"
+              placeholder="Nom de la société (optionnel)"
             />
           </div>
 
@@ -385,7 +385,7 @@ function NewClientModal({ isOpen, onClose, onSave }: NewClientModalProps) {
               type="submit"
               className="px-4 py-2 text-sm font-medium text-white bg-[#2563EB] rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Creer le client
+              Créer le client
             </button>
           </div>
         </form>

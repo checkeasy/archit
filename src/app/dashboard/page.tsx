@@ -35,7 +35,7 @@ const mockStats: DashboardStats = {
 const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } }> = [
   {
     id: '1',
-    name: 'Residence Les Terrasses',
+    name: 'Résidence Les Terrasses',
     description: 'Construction neuve R+3, 24 logements collectifs',
     reference: 'PRJ-00012',
     client_id: 'c1',
@@ -56,7 +56,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '2',
     name: 'Maison Martin',
-    description: 'Extension et renovation maison individuelle',
+    description: 'Extension et rénovation maison individuelle',
     reference: 'PRJ-00011',
     client_id: 'c2',
     client: { name: 'M. et Mme Martin' },
@@ -76,7 +76,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '3',
     name: 'Bureaux Nextech',
-    description: 'Amenagement bureaux open-space 600m2',
+    description: 'Aménagement bureaux open-space 600m2',
     reference: 'PRJ-00010',
     client_id: 'c3',
     client: { name: 'Nextech SAS' },
@@ -84,7 +84,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
     phase: 'pro' as ProjectPhase,
     budget: 195000,
     surface_m2: 600,
-    address: '45 avenue de la Republique',
+    address: '45 avenue de la République',
     city: 'Paris',
     postal_code: '75011',
     start_date: '2025-10-01',
@@ -96,7 +96,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '4',
     name: 'Restaurant Le Comptoir',
-    description: 'Renovation complete + mise aux normes ERP',
+    description: 'Rénovation complète + mise aux normes ERP',
     reference: 'PRJ-00009',
     client_id: 'c4',
     client: { name: 'SARL Le Comptoir' },
@@ -115,8 +115,8 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   },
   {
     id: '5',
-    name: 'Ecole Montessori Les Petits Chenes',
-    description: 'Construction ecole maternelle 6 classes',
+    name: 'École Montessori Les Petits Chênes',
+    description: 'Construction école maternelle 6 classes',
     reference: 'PRJ-00008',
     client_id: 'c5',
     client: { name: 'Mairie de Caluire' },
@@ -141,8 +141,8 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
     user_id: 'u1',
     user: { full_name: 'Jean Dupont' },
     project_id: '1',
-    action: 'a mis a jour le bordereau DCE',
-    details: 'Residence Les Terrasses',
+    action: 'a mis à jour le bordereau DCE',
+    details: 'Résidence Les Terrasses',
     entity_type: 'document',
     entity_id: 'd1',
     created_at: '2026-02-18T09:45:00',
@@ -150,7 +150,7 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
   {
     id: 'a2',
     user_id: 'u2',
-    user: { full_name: 'Marie Lefevre' },
+    user: { full_name: 'Marie Lefèvre' },
     project_id: '2',
     action: 'a ajouté un commentaire sur',
     details: 'Maison Martin',
@@ -185,8 +185,8 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
     user_id: 'u1',
     user: { full_name: 'Jean Dupont' },
     project_id: '1',
-    action: 'a valide la phase PRO de',
-    details: 'Residence Les Terrasses',
+    action: 'a validé la phase PRO de',
+    details: 'Résidence Les Terrasses',
     entity_type: 'project',
     entity_id: '1',
     created_at: '2026-02-17T10:20:00',
@@ -194,10 +194,10 @@ const mockActivities: Array<Omit<ActivityLog, 'user'> & { user?: { full_name: st
   {
     id: 'a6',
     user_id: 'u2',
-    user: { full_name: 'Marie Lefevre' },
+    user: { full_name: 'Marie Lefèvre' },
     project_id: '5',
-    action: 'a depose le permis de construire pour',
-    details: 'Ecole Montessori Les Petits Chenes',
+    action: 'a déposé le permis de construire pour',
+    details: 'École Montessori Les Petits Chênes',
     entity_type: 'permit',
     entity_id: 'p1',
     created_at: '2026-02-16T16:45:00',
@@ -221,7 +221,7 @@ const revenueData = [
   { month: 'Nov 2025', amount: 24800 },
   { month: 'Dec 2025', amount: 19200 },
   { month: 'Jan 2026', amount: 26100 },
-  { month: 'Fev 2026', amount: 28400 },
+  { month: 'Fév 2026', amount: 28400 },
 ];
 
 const phaseDistribution = [
@@ -451,7 +451,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Tableau de bord</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Bienvenue, Jean. Voici un apercu de votre activité.
+            Bienvenue, Jean. Voici un aperçu de votre activité.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -621,10 +621,10 @@ export default function DashboardPage() {
             }}
           >
             <p style={{ fontSize: '13px', color: '#6b7280' }}>
-              Total periode : <span style={{ fontWeight: 600, color: '#111827' }}>{formatCurrency(revenueData.reduce((s, d) => s + d.amount, 0))}</span>
+              Total période : <span style={{ fontWeight: 600, color: '#111827' }}>{formatCurrency(revenueData.reduce((s, d) => s + d.amount, 0))}</span>
             </p>
             <p style={{ fontSize: '13px', color: '#16a34a', fontWeight: 500 }}>
-              +12% vs periode precedente
+              +12% vs période précédente
             </p>
           </div>
         </div>
@@ -640,7 +640,7 @@ export default function DashboardPage() {
           }}
         >
           <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#111827', marginBottom: '20px' }}>
-            Repartition par phase
+            Répartition par phase
           </h2>
           <div className="space-y-2">
             {phaseDistribution.map((item) => {
@@ -717,7 +717,7 @@ export default function DashboardPage() {
         {/* Recent Projects */}
         <div className="lg:col-span-2 rounded-xl border border-gray-200 bg-white">
           <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
-            <h2 className="text-base font-semibold text-gray-900">Projets recents</h2>
+            <h2 className="text-base font-semibold text-gray-900">Projets récents</h2>
             <Link
               href="/dashboard/projects"
               className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
@@ -826,7 +826,7 @@ export default function DashboardPage() {
         {/* Activity Feed */}
         <div className="rounded-xl border border-gray-200 bg-white">
           <div className="border-b border-gray-100 px-5 py-4">
-            <h2 className="text-base font-semibold text-gray-900">Activité recente</h2>
+            <h2 className="text-base font-semibold text-gray-900">Activité récente</h2>
           </div>
           <div className="divide-y divide-gray-50">
             {mockActivities.map((activity) => {
@@ -870,7 +870,7 @@ export default function DashboardPage() {
       <div className="rounded-xl border border-gray-200 bg-white p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertCircle className="h-5 w-5 text-amber-500" />
-          <h2 className="text-base font-semibold text-gray-900">Echeances a venir</h2>
+          <h2 className="text-base font-semibold text-gray-900">Échéances à venir</h2>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex items-center gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3">
@@ -878,7 +878,7 @@ export default function DashboardPage() {
               22<br />Fev
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900">Depot PC - Ecole Montessori</p>
+              <p className="text-sm font-medium text-gray-900">Dépôt PC - École Montessori</p>
               <p className="text-xs text-gray-500">Dans 4 jours</p>
             </div>
           </div>
@@ -887,7 +887,7 @@ export default function DashboardPage() {
               28<br />Fev
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900">Rendu DCE - Residence Les Terrasses</p>
+              <p className="text-sm font-medium text-gray-900">Rendu DCE - Résidence Les Terrasses</p>
               <p className="text-xs text-gray-500">Dans 10 jours</p>
             </div>
           </div>
@@ -896,7 +896,7 @@ export default function DashboardPage() {
               05<br />Mar
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900">Reunion chantier - Restaurant</p>
+              <p className="text-sm font-medium text-gray-900">Réunion chantier - Restaurant</p>
               <p className="text-xs text-gray-500">Dans 15 jours</p>
             </div>
           </div>

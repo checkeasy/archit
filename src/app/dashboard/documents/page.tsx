@@ -93,10 +93,10 @@ const categoryOptions: { value: DocumentCategory | 'all'; label: string }[] = [
 // ============================================
 
 const mockProjects = [
-  { id: 'p1', name: 'Villa Mediterranee' },
+  { id: 'p1', name: 'Villa Méditerranée' },
   { id: 'p2', name: 'Bureaux Haussmann' },
-  { id: 'p3', name: 'Residence Les Oliviers' },
-  { id: 'p4', name: 'Ecole Jean Jaures' },
+  { id: 'p3', name: 'Résidence Les Oliviers' },
+  { id: 'p4', name: 'École Jean Jaurès' },
 ];
 
 // ============================================
@@ -122,7 +122,7 @@ const mockDocuments: MockDocument[] = [
   {
     id: 'doc-1',
     project_id: 'p1',
-    project_name: 'Villa Mediterranee',
+    project_name: 'Villa Méditerranée',
     name: 'Plan RDC - Phase APD.dwg',
     file_url: '#',
     file_type: 'application/dwg',
@@ -150,7 +150,7 @@ const mockDocuments: MockDocument[] = [
   {
     id: 'doc-3',
     project_id: 'p1',
-    project_name: 'Villa Mediterranee',
+    project_name: 'Villa Méditerranée',
     name: 'Contrat MOE - Phase PRO.pdf',
     file_url: '#',
     file_type: 'application/pdf',
@@ -164,7 +164,7 @@ const mockDocuments: MockDocument[] = [
   {
     id: 'doc-4',
     project_id: 'p3',
-    project_name: 'Residence Les Oliviers',
+    project_name: 'Résidence Les Oliviers',
     name: 'Permis de construire PC-075-2026-001.pdf',
     file_url: '#',
     file_type: 'application/pdf',
@@ -178,7 +178,7 @@ const mockDocuments: MockDocument[] = [
   {
     id: 'doc-5',
     project_id: 'p4',
-    project_name: 'Ecole Jean Jaures',
+    project_name: 'École Jean Jaurès',
     name: 'Rapport etude thermique RE2020.pdf',
     file_url: '#',
     file_type: 'application/pdf',
@@ -192,7 +192,7 @@ const mockDocuments: MockDocument[] = [
   {
     id: 'doc-6',
     project_id: 'p1',
-    project_name: 'Villa Mediterranee',
+    project_name: 'Villa Méditerranée',
     name: 'Photos chantier - Gros oeuvre.jpg',
     file_url: '#',
     file_type: 'image/jpeg',
@@ -220,7 +220,7 @@ const mockDocuments: MockDocument[] = [
   {
     id: 'doc-8',
     project_id: 'p3',
-    project_name: 'Residence Les Oliviers',
+    project_name: 'Résidence Les Oliviers',
     name: 'Plan masse - Esquisse V2.pdf',
     file_url: '#',
     file_type: 'application/pdf',

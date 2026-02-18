@@ -28,7 +28,7 @@ const mockClients = [
   { id: 'c3', name: 'Nextech SAS' },
   { id: 'c4', name: 'SARL Le Comptoir' },
   { id: 'c5', name: 'Mairie de Caluire' },
-  { id: 'c6', name: 'Groupe Immobilier Rhone' },
+  { id: 'c6', name: 'Groupe Immobilier Rhône' },
   { id: 'c7', name: 'M. Lefebvre' },
   { id: 'c8', name: 'Association Sport pour Tous' },
 ];
@@ -39,7 +39,7 @@ const mockClients = [
 const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } }> = [
   {
     id: '1',
-    name: 'Residence Les Terrasses',
+    name: 'Résidence Les Terrasses',
     description: 'Construction neuve R+3, 24 logements collectifs',
     reference: 'PRJ-00012',
     client_id: 'c1',
@@ -60,7 +60,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '2',
     name: 'Maison Martin',
-    description: 'Extension et renovation maison individuelle',
+    description: 'Extension et rénovation maison individuelle',
     reference: 'PRJ-00011',
     client_id: 'c2',
     client: { name: 'M. et Mme Martin' },
@@ -80,7 +80,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '3',
     name: 'Bureaux Nextech',
-    description: 'Amenagement bureaux open-space 600m2',
+    description: 'Aménagement bureaux open-space 600m2',
     reference: 'PRJ-00010',
     client_id: 'c3',
     client: { name: 'Nextech SAS' },
@@ -88,7 +88,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
     phase: 'pro',
     budget: 195000,
     surface_m2: 600,
-    address: '45 avenue de la Republique, Paris',
+    address: '45 avenue de la République, Paris',
     city: 'Paris',
     postal_code: '75011',
     start_date: '2025-10-01',
@@ -100,7 +100,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '4',
     name: 'Restaurant Le Comptoir',
-    description: 'Renovation complete + mise aux normes ERP',
+    description: 'Rénovation complète + mise aux normes ERP',
     reference: 'PRJ-00009',
     client_id: 'c4',
     client: { name: 'SARL Le Comptoir' },
@@ -119,8 +119,8 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   },
   {
     id: '5',
-    name: 'Ecole Montessori Les Petits Chenes',
-    description: 'Construction ecole maternelle 6 classes',
+    name: 'École Montessori Les Petits Chênes',
+    description: 'Construction école maternelle 6 classes',
     reference: 'PRJ-00008',
     client_id: 'c5',
     client: { name: 'Mairie de Caluire' },
@@ -140,10 +140,10 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '6',
     name: 'Immeuble Confluence T4',
-    description: 'Rehabilitation immeuble haussmannien, 18 lots',
+    description: 'Réhabilitation immeuble haussmannien, 18 lots',
     reference: 'PRJ-00007',
     client_id: 'c6',
-    client: { name: 'Groupe Immobilier Rhone' },
+    client: { name: 'Groupe Immobilier Rhône' },
     status: 'active',
     phase: 'visa',
     budget: 480000,
@@ -160,7 +160,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '7',
     name: 'Villa Lefebvre',
-    description: 'Maison contemporaine bois-beton, terrain en pente',
+    description: 'Maison contemporaine bois-béton, terrain en pente',
     reference: 'PRJ-00006',
     client_id: 'c7',
     client: { name: 'M. Lefebvre' },
@@ -180,7 +180,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   {
     id: '8',
     name: 'Complexe Sportif Municipal',
-    description: 'Gymnase + piscine, marche public',
+    description: 'Gymnase + piscine, marché public',
     reference: 'PRJ-00005',
     client_id: 'c8',
     client: { name: 'Association Sport pour Tous' },
@@ -208,7 +208,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
     phase: 'det',
     budget: 110000,
     surface_m2: 150,
-    address: '34 montee de la Grande Cote, Lyon',
+    address: '34 montée de la Grande Côte, Lyon',
     city: 'Lyon',
     postal_code: '69001',
     start_date: '2025-06-01',
@@ -219,8 +219,8 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
   },
   {
     id: '10',
-    name: 'Centre Medical Saint-Exupery',
-    description: 'Construction centre medical pluridisciplinaire',
+    name: 'Centre Médical Saint-Exupéry',
+    description: 'Construction centre médical pluridisciplinaire',
     reference: 'PRJ-00003',
     client_id: 'c5',
     client: { name: 'Mairie de Caluire' },
@@ -228,7 +228,7 @@ const mockProjects: Array<Omit<Project, 'client'> & { client?: { name: string } 
     phase: 'prospect',
     budget: null,
     surface_m2: 800,
-    address: 'Rue Saint-Exupery, Caluire-et-Cuire',
+    address: 'Rue Saint-Exupéry, Caluire-et-Cuire',
     city: 'Caluire-et-Cuire',
     postal_code: '69300',
     start_date: null,
@@ -763,7 +763,7 @@ export default function ProjectsPage() {
                   type="text"
                   value={newProject.name}
                   onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
-                  placeholder="Ex: Residence Les Terrasses"
+                  placeholder="Ex: Résidence Les Terrasses"
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                 />
               </div>
@@ -935,7 +935,7 @@ export default function ProjectsPage() {
                 disabled={!newProject.name.trim()}
                 className="rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                Creer le projet
+                Créer le projet
               </button>
             </div>
           </div>
