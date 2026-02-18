@@ -61,8 +61,8 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: '2',
-    name: 'Marie Lef\u00e8vre',
-    title: "Architecte d'int\u00e9rieur",
+    name: 'Marie Lefèvre',
+    title: "Architecte d'intérieur",
     email: 'marie.lefevre@cabinet-dupont.fr',
     role: 'Architecte',
     status: 'Actif',
@@ -110,7 +110,7 @@ const teamMembers: TeamMember[] = [
     email: 'thomas.garcia@gmail.com',
     role: 'Architecte',
     status: 'En attente',
-    dateLabel: 'Invit\u00e9 le 10/02/2026',
+    dateLabel: 'Invité le 10/02/2026',
     isPending: true,
     avatarColor: '#9CA3AF',
   },
@@ -121,7 +121,7 @@ const teamMembers: TeamMember[] = [
     email: 'julie.blanc@outlook.fr',
     role: 'Collaborateur',
     status: 'En attente',
-    dateLabel: 'Invit\u00e9 le 15/02/2026',
+    dateLabel: 'Invité le 15/02/2026',
     isPending: true,
     avatarColor: '#9CA3AF',
   },
@@ -203,12 +203,12 @@ function ActionDropdown({ member }: { member: TeamMember }) {
 
   const actions = member.isPending
     ? [
-        { label: 'Renvoyer l\u2019invitation', icon: RefreshCw, color: '#2563EB' },
-        { label: 'Annuler l\u2019invitation', icon: XCircle, color: '#DC2626' },
+        { label: 'Renvoyer l’invitation', icon: RefreshCw, color: '#2563EB' },
+        { label: 'Annuler l’invitation', icon: XCircle, color: '#DC2626' },
       ]
     : [
-        { label: 'Modifier le r\u00f4le', icon: Edit3, color: '#4B5563' },
-        { label: 'D\u00e9sactiver', icon: UserMinus, color: '#D97706' },
+        { label: 'Modifier le rôle', icon: Edit3, color: '#4B5563' },
+        { label: 'Désactiver', icon: UserMinus, color: '#D97706' },
         { label: 'Supprimer', icon: Trash2, color: '#DC2626' },
       ];
 
@@ -481,7 +481,7 @@ function InviteModal({ onClose }: { onClose: () => void }) {
                 marginBottom: '6px',
               }}
             >
-              R\u00f4le
+              Rôle
             </label>
             <div style={{ display: 'flex', gap: '10px' }}>
               {(['Architecte', 'Collaborateur'] as const).map((r) => {
@@ -542,8 +542,8 @@ function InviteModal({ onClose }: { onClose: () => void }) {
             }}
           >
             <p style={{ fontSize: '12px', color: '#0369A1', lineHeight: 1.5, margin: 0 }}>
-              Un email d&apos;invitation sera envoy\u00e9 avec un lien pour rejoindre votre cabinet.
-              L&apos;invitation expire apr\u00e8s 7 jours.
+              Un email d&apos;invitation sera envoyé avec un lien pour rejoindre votre cabinet.
+              L&apos;invitation expire après 7 jours.
             </p>
           </div>
 
@@ -600,7 +600,7 @@ function InviteModal({ onClose }: { onClose: () => void }) {
               }}
             >
               <Send style={{ width: '15px', height: '15px' }} />
-              {sending ? 'Envoi en cours...' : 'Envoyer l\u2019invitation'}
+              {sending ? 'Envoi en cours...' : 'Envoyer l’invitation'}
             </button>
           </div>
         </div>
@@ -666,7 +666,7 @@ export default function TeamPage() {
   const rolePermissions = [
     {
       role: 'Admin',
-      description: 'Acc\u00e8s complet \u00e0 toutes les fonctionnalit\u00e9s',
+      description: 'Accès complet à toutes les fonctionnalités',
       color: '#2563EB',
       bgColor: '#EFF6FF',
       borderColor: '#BFDBFE',
@@ -674,13 +674,13 @@ export default function TeamPage() {
       permissions: [
         'Gestion des membres',
         'Facturation et abonnement',
-        'Param\u00e8tres du cabinet',
+        'Paramètres du cabinet',
         'Tous les projets et documents',
       ],
     },
     {
       role: 'Architecte',
-      description: 'Gestion compl\u00e8te des projets',
+      description: 'Gestion complète des projets',
       color: '#7C3AED',
       bgColor: '#F5F3FF',
       borderColor: '#DDD6FE',
@@ -694,14 +694,14 @@ export default function TeamPage() {
     },
     {
       role: 'Collaborateur',
-      description: 'Acc\u00e8s aux projets assign\u00e9s',
+      description: 'Accès aux projets assignés',
       color: '#4B5563',
       bgColor: '#F9FAFB',
       borderColor: '#E5E7EB',
       icon: Briefcase,
       permissions: [
-        'Projets assign\u00e9s uniquement',
-        'Documents partag\u00e9s',
+        'Projets assignés uniquement',
+        'Documents partagés',
         'Commentaires et notes',
         'Consultation du calendrier',
       ],
@@ -751,7 +751,7 @@ export default function TeamPage() {
           }}
         >
           <ArrowLeft style={{ width: '16px', height: '16px' }} />
-          Retour aux param\u00e8tres
+          Retour aux paramètres
         </Link>
 
         <div
@@ -765,10 +765,10 @@ export default function TeamPage() {
         >
           <div>
             <h1 style={{ fontSize: '24px', fontWeight: 700, color: '#111827', margin: 0 }}>
-              Gestion de l\u2019\u00e9quipe
+              Gestion de l’équipe
             </h1>
             <p style={{ fontSize: '14px', color: '#6B7280', marginTop: '4px' }}>
-              G\u00e9rez les membres de votre cabinet et leurs permissions
+              Gérez les membres de votre cabinet et leurs permissions
             </p>
           </div>
           <button
@@ -897,7 +897,7 @@ export default function TeamPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Users style={{ width: '18px', height: '18px', color: '#6B7280' }} />
             <h2 style={{ fontSize: '15px', fontWeight: 600, color: '#111827', margin: 0 }}>
-              Membres de l&apos;\u00e9quipe
+              Membres de l&apos;équipe
             </h2>
             <span
               style={{
@@ -943,7 +943,7 @@ export default function TeamPage() {
                     letterSpacing: '0.05em',
                   }}
                 >
-                  R\u00f4le
+                  Rôle
                 </th>
                 <th
                   style={{
@@ -1148,10 +1148,10 @@ export default function TeamPage() {
       <div style={{ marginBottom: '28px' }}>
         <div style={{ marginBottom: '16px' }}>
           <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#111827', margin: 0 }}>
-            R\u00f4les et permissions
+            Rôles et permissions
           </h2>
           <p style={{ fontSize: '13px', color: '#6B7280', marginTop: '4px' }}>
-            D\u00e9couvrez les diff\u00e9rents niveaux d&apos;acc\u00e8s disponibles
+            Découvrez les différents niveaux d&apos;accès disponibles
           </p>
         </div>
 
