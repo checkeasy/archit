@@ -228,6 +228,43 @@ export default function SettingsPage() {
           </div>
           <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
         </Link>
+        <Link
+          href="/dashboard/settings/security"
+          className="group flex items-center gap-4"
+          style={{
+            padding: '16px 20px',
+            borderRadius: 12,
+            border: '1px solid #e5e7eb',
+            backgroundColor: '#ffffff',
+            textDecoration: 'none',
+            transition: 'all 150ms ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = '#fca5a5';
+            e.currentTarget.style.boxShadow = '0 2px 8px rgba(239,68,68,0.08)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = '#e5e7eb';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+        >
+          <div
+            className="flex items-center justify-center shrink-0"
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              backgroundColor: '#fef2f2',
+            }}
+          >
+            <Shield className="h-5 w-5" style={{ color: '#ef4444' }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-gray-900">Sécurité</p>
+            <p className="text-xs text-gray-500">2FA, sessions et confidentialité</p>
+          </div>
+          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
+        </Link>
       </div>
 
       {/* ============================================ */}
