@@ -4,20 +4,20 @@ import { useState } from 'react';
 import Link from 'next/link';
 import {
   User,
-  Building2,
-  Bell,
-  Shield,
-  AlertTriangle,
-  Camera,
-  Upload,
-  Eye,
-  EyeOff,
-  Save,
-  Trash2,
+  Users,
   CreditCard,
   Plug,
-  Users,
+  Bell,
+  Shield,
   ChevronRight,
+  Pencil,
+  Download,
+  Trash2,
+  AlertTriangle,
+  Clock,
+  HardDrive,
+  CalendarDays,
+  X,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Profile } from '@/types';
@@ -41,45 +41,339 @@ const mockProfile: Profile = {
 };
 
 // ============================================
-// Toggle Switch component
+// Navigation card data
 // ============================================
 
-function ToggleSwitch({
-  enabled,
-  onChange,
-  label,
+const settingsCards = [
+  {
+    href: '/dashboard/settings/profile',
+    icon: User,
+    title: 'Profil',
+    description: 'Informations personnelles et coordonnées',
+    iconBg: '#EFF6FF',
+    iconColor: '#2563EB',
+    hoverBorder: '#93C5FD',
+    hoverShadow: 'rgba(37,99,235,0.08)',
+  },
+  {
+    href: '/dashboard/settings/team',
+    icon: Users,
+    title: 'Équipe',
+    description: 'Membres, rôles et permissions',
+    iconBg: '#F5F3FF',
+    iconColor: '#7C3AED',
+    hoverBorder: '#C4B5FD',
+    hoverShadow: 'rgba(124,58,237,0.08)',
+  },
+  {
+    href: '/dashboard/settings/billing',
+    icon: CreditCard,
+    title: 'Facturation',
+    description: 'Abonnement, plans et paiements',
+    iconBg: '#ECFDF5',
+    iconColor: '#059669',
+    hoverBorder: '#6EE7B7',
+    hoverShadow: 'rgba(5,150,105,0.08)',
+  },
+  {
+    href: '/dashboard/settings/integrations',
+    icon: Plug,
+    title: 'Intégrations',
+    description: 'API, connecteurs et services tiers',
+    iconBg: '#FFF7ED',
+    iconColor: '#EA580C',
+    hoverBorder: '#FDBA74',
+    hoverShadow: 'rgba(234,88,12,0.08)',
+  },
+  {
+    href: '/dashboard/settings/notifications',
+    icon: Bell,
+    title: 'Notifications',
+    description: 'Email, push et alertes projet',
+    iconBg: '#FFFBEB',
+    iconColor: '#D97706',
+    hoverBorder: '#FCD34D',
+    hoverShadow: 'rgba(217,119,6,0.08)',
+  },
+  {
+    href: '/dashboard/settings/security',
+    icon: Shield,
+    title: 'Sécurité',
+    description: '2FA, sessions et confidentialité',
+    iconBg: '#FEF2F2',
+    iconColor: '#DC2626',
+    hoverBorder: '#FCA5A5',
+    hoverShadow: 'rgba(220,38,38,0.08)',
+  },
+];
+
+// ============================================
+// SettingsNavCard component
+// ============================================
+
+function SettingsNavCard({
+  href,
+  icon: Icon,
+  title,
   description,
-}: {
-  enabled: boolean;
-  onChange: (value: boolean) => void;
-  label: string;
-  description?: string;
-}) {
+  iconBg,
+  iconColor,
+  hoverBorder,
+  hoverShadow,
+}: (typeof settingsCards)[number]) {
   return (
-    <div className="flex items-center justify-between py-3">
-      <div className="flex-1 min-w-0 pr-4">
-        <p className="text-sm font-medium text-gray-900">{label}</p>
-        {description && (
-          <p className="mt-0.5 text-xs text-gray-500">{description}</p>
-        )}
-      </div>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={enabled}
-        onClick={() => onChange(!enabled)}
-        className={cn(
-          'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:ring-offset-2',
-          enabled ? 'bg-[#2563EB]' : 'bg-gray-200'
-        )}
+    <Link
+      href={href}
+      className="group flex items-center gap-4"
+      style={{
+        padding: '20px',
+        borderRadius: 14,
+        border: '1.5px solid #E5E7EB',
+        backgroundColor: '#FFFFFF',
+        textDecoration: 'none',
+        transition: 'all 200ms cubic-bezier(0.4,0,0.2,1)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = hoverBorder;
+        e.currentTarget.style.boxShadow = `0 4px 16px ${hoverShadow}`;
+        e.currentTarget.style.transform = 'translateY(-1px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = '#E5E7EB';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      <div
+        className="flex items-center justify-center shrink-0"
+        style={{
+          width: 44,
+          height: 44,
+          borderRadius: 12,
+          backgroundColor: iconBg,
+        }}
       >
-        <span
-          className={cn(
-            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200',
-            enabled ? 'translate-x-5' : 'translate-x-0'
-          )}
-        />
-      </button>
+        <Icon style={{ width: 22, height: 22, color: iconColor }} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p
+          style={{
+            fontSize: 15,
+            fontWeight: 600,
+            color: '#111827',
+            marginBottom: 2,
+          }}
+        >
+          {title}
+        </p>
+        <p style={{ fontSize: 13, color: '#6B7280', lineHeight: 1.4 }}>
+          {description}
+        </p>
+      </div>
+      <ChevronRight
+        style={{
+          width: 18,
+          height: 18,
+          color: '#D1D5DB',
+          transition: 'all 200ms ease',
+        }}
+        className="group-hover:translate-x-0.5"
+      />
+    </Link>
+  );
+}
+
+// ============================================
+// Delete confirmation modal
+// ============================================
+
+function DeleteModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const [confirmText, setConfirmText] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  if (!open) return null;
+
+  async function handleDelete() {
+    setDeleting(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setDeleting(false);
+    onClose();
+  }
+
+  return (
+    <div
+      className="fixed inset-0 flex items-center justify-center"
+      style={{
+        zIndex: 9999,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        backdropFilter: 'blur(4px)',
+      }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div
+        className="w-full max-w-md mx-4"
+        style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: 16,
+          boxShadow: '0 24px 48px rgba(0,0,0,0.16)',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Modal header */}
+        <div
+          className="flex items-center justify-between"
+          style={{
+            padding: '20px 24px',
+            borderBottom: '1px solid #FEE2E2',
+            backgroundColor: '#FEF2F2',
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className="flex items-center justify-center"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 10,
+                backgroundColor: '#FEE2E2',
+              }}
+            >
+              <AlertTriangle style={{ width: 20, height: 20, color: '#DC2626' }} />
+            </div>
+            <div>
+              <p style={{ fontSize: 16, fontWeight: 700, color: '#991B1B' }}>
+                Supprimer le compte
+              </p>
+              <p style={{ fontSize: 12, color: '#DC2626' }}>
+                Action irréversible
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="flex items-center justify-center"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 8,
+              border: 'none',
+              backgroundColor: 'transparent',
+              cursor: 'pointer',
+              color: '#991B1B',
+            }}
+          >
+            <X style={{ width: 18, height: 18 }} />
+          </button>
+        </div>
+
+        {/* Modal body */}
+        <div style={{ padding: '24px' }}>
+          <p style={{ fontSize: 14, color: '#374151', lineHeight: 1.6, marginBottom: 16 }}>
+            Cette action supprimera définitivement votre compte, vos projets,
+            vos documents et toutes vos données associées.
+            <strong style={{ color: '#111827' }}> Cette action est irréversible.</strong>
+          </p>
+
+          <div style={{ marginBottom: 20 }}>
+            <label
+              htmlFor="deleteConfirm"
+              style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#6B7280', marginBottom: 8 }}
+            >
+              Tapez <span style={{ fontFamily: 'monospace', fontWeight: 700, color: '#DC2626', backgroundColor: '#FEF2F2', padding: '2px 6px', borderRadius: 4 }}>SUPPRIMER</span> pour confirmer
+            </label>
+            <input
+              id="deleteConfirm"
+              type="text"
+              value={confirmText}
+              onChange={(e) => setConfirmText(e.target.value)}
+              placeholder="SUPPRIMER"
+              style={{
+                display: 'block',
+                width: '100%',
+                padding: '10px 14px',
+                fontSize: 14,
+                borderRadius: 10,
+                border: '1.5px solid #FCA5A5',
+                backgroundColor: '#FFFFFF',
+                outline: 'none',
+                color: '#111827',
+                boxSizing: 'border-box',
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = '#DC2626';
+                e.currentTarget.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.1)';
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = '#FCA5A5';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            />
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleDelete}
+              disabled={confirmText !== 'SUPPRIMER' || deleting}
+              className="flex-1 flex items-center justify-center gap-2"
+              style={{
+                padding: '10px 20px',
+                fontSize: 14,
+                fontWeight: 600,
+                borderRadius: 10,
+                border: 'none',
+                backgroundColor: confirmText === 'SUPPRIMER' && !deleting ? '#DC2626' : '#F9A8A8',
+                color: '#FFFFFF',
+                cursor: confirmText === 'SUPPRIMER' && !deleting ? 'pointer' : 'not-allowed',
+                opacity: confirmText === 'SUPPRIMER' && !deleting ? 1 : 0.6,
+                transition: 'all 150ms ease',
+              }}
+              onMouseEnter={(e) => {
+                if (confirmText === 'SUPPRIMER' && !deleting) {
+                  e.currentTarget.style.backgroundColor = '#B91C1C';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (confirmText === 'SUPPRIMER' && !deleting) {
+                  e.currentTarget.style.backgroundColor = '#DC2626';
+                }
+              }}
+            >
+              <Trash2 style={{ width: 16, height: 16 }} />
+              {deleting ? 'Suppression...' : 'Supprimer définitivement'}
+            </button>
+            <button
+              onClick={onClose}
+              style={{
+                padding: '10px 20px',
+                fontSize: 14,
+                fontWeight: 500,
+                borderRadius: 10,
+                border: '1.5px solid #E5E7EB',
+                backgroundColor: '#FFFFFF',
+                color: '#374151',
+                cursor: 'pointer',
+                transition: 'all 150ms ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#F9FAFB';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#FFFFFF';
+              }}
+            >
+              Annuler
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -89,685 +383,424 @@ function ToggleSwitch({
 // ============================================
 
 export default function SettingsPage() {
-  // Profile state
-  const [fullName, setFullName] = useState(mockProfile.full_name);
-  const [phone, setPhone] = useState(mockProfile.phone || '');
-  const [firmName, setFirmName] = useState(mockProfile.firm_name || '');
-  const [siret, setSiret] = useState(mockProfile.siret || '');
-  const [address, setAddress] = useState(mockProfile.address || '');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  // Company state
-  const [companyName, setCompanyName] = useState(
-    mockProfile.firm_name || ''
-  );
-  const [companyAddress, setCompanyAddress] = useState(
-    mockProfile.address || ''
-  );
-  const [companySiret, setCompanySiret] = useState(
-    mockProfile.siret || ''
-  );
-
-  // Notification préférences
-  const [emailNotifs, setEmailNotifs] = useState(true);
-  const [projectUpdates, setProjectUpdates] = useState(true);
-  const [invoiceReminders, setInvoiceReminders] = useState(true);
-  const [weeklySummary, setWeeklySummary] = useState(false);
-
-  // Security
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
-
-  // Delete account confirmation
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [deleteConfirmText, setDeleteConfirmText] = useState('');
-
-  // Saving states
-  const [savingProfile, setSavingProfile] = useState(false);
-  const [savingCompany, setSavingCompany] = useState(false);
-  const [savingPassword, setSavingPassword] = useState(false);
-
-  // Initials for avatar
-  const initials = fullName
+  // Derived values
+  const initials = mockProfile.full_name
     .split(' ')
     .map((n) => n[0])
     .join('')
     .toUpperCase()
     .slice(0, 2);
 
-  async function handleSaveProfile() {
-    setSavingProfile(true);
-    // Simulating API call
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setSavingProfile(false);
-  }
+  const lastLogin = new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date('2026-02-19T09:15:00Z'));
 
-  async function handleSaveCompany() {
-    setSavingCompany(true);
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setSavingCompany(false);
-  }
+  // Storage values
+  const storageUsedGo = 2.4;
+  const storageTotalGo = 10;
+  const storagePercent = Math.round((storageUsedGo / storageTotalGo) * 100);
 
-  async function handleChangePassword() {
-    if (newPassword !== confirmPassword) return;
-    setSavingPassword(true);
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setSavingPassword(false);
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
-  }
-
-  const inputClassName =
-    'block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none';
-  const labelClassName = 'block text-sm font-medium text-gray-700 mb-1.5';
+  // Team values
+  const teamCurrent = 4;
+  const teamMax = 10;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
-      {/* Page header */}
+    <div className="mx-auto max-w-4xl space-y-8">
+      {/* ============================================ */}
+      {/* Page Header */}
+      {/* ============================================ */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Paramètres</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <h1 style={{ fontSize: 26, fontWeight: 700, color: '#111827', marginBottom: 4 }}>
+          Paramètres
+        </h1>
+        <p style={{ fontSize: 15, color: '#6B7280' }}>
           Gérez votre profil, votre cabinet et vos préférences.
         </p>
       </div>
 
-      {/* Settings sub-pages navigation */}
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Link
-          href="/dashboard/settings/profile"
-          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#EFF6FF', color: '#2563EB' }}>
-            <User className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900">Profil</p>
-            <p className="text-xs text-gray-500">Informations personnelles</p>
-          </div>
-          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
-        </Link>
-        <Link
-          href="/dashboard/settings/team"
-          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#F5F3FF', color: '#7C3AED' }}>
-            <Users className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900">Équipe</p>
-            <p className="text-xs text-gray-500">Gestion des membres</p>
-          </div>
-          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
-        </Link>
-        <Link
-          href="/dashboard/settings/billing"
-          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#ECFDF5', color: '#059669' }}>
-            <CreditCard className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900">Facturation</p>
-            <p className="text-xs text-gray-500">Plans et paiements</p>
-          </div>
-          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
-        </Link>
-        <Link
-          href="/dashboard/settings/integrations"
-          className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#FFF7ED', color: '#EA580C' }}>
-            <Plug className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900">Intégrations</p>
-            <p className="text-xs text-gray-500">API et services tiers</p>
-          </div>
-          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
-        </Link>
-        <Link
-          href="/dashboard/settings/security"
-          className="group flex items-center gap-4"
-          style={{
-            padding: '16px 20px',
-            borderRadius: 12,
-            border: '1px solid #e5e7eb',
-            backgroundColor: '#ffffff',
-            textDecoration: 'none',
-            transition: 'all 150ms ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#fca5a5';
-            e.currentTarget.style.boxShadow = '0 2px 8px rgba(239,68,68,0.08)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = '#e5e7eb';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
-        >
-          <div
-            className="flex items-center justify-center shrink-0"
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 10,
-              backgroundColor: '#fef2f2',
-            }}
-          >
-            <Shield className="h-5 w-5" style={{ color: '#ef4444' }} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900">Sécurité</p>
-            <p className="text-xs text-gray-500">2FA, sessions et confidentialité</p>
-          </div>
-          <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
-        </Link>
+      {/* ============================================ */}
+      {/* Navigation Grid (3 cols x 2 rows) */}
+      {/* ============================================ */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {settingsCards.map((card) => (
+          <SettingsNavCard key={card.href} {...card} />
+        ))}
       </div>
 
       {/* ============================================ */}
-      {/* Profile Section */}
+      {/* Quick Profile Section */}
       {/* ============================================ */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-[#2563EB]">
-            <User className="h-4 w-4" />
-          </div>
-          <div>
-            <h2 className="text-base font-semibold text-gray-900">
-              Profil personnel
-            </h2>
-            <p className="text-xs text-gray-500">
-              Vos informations personnelles et de contact
-            </p>
-          </div>
-        </div>
-
-        {/* Avatar */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="relative group">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-[#2563EB] text-lg font-semibold">
+      <div
+        style={{
+          backgroundColor: '#FFFFFF',
+          border: '1.5px solid #E5E7EB',
+          borderRadius: 16,
+          padding: '28px',
+        }}
+      >
+        <div className="flex items-start justify-between flex-wrap gap-4">
+          <div className="flex items-center gap-5">
+            {/* Avatar */}
+            <div
+              className="flex items-center justify-center shrink-0"
+              style={{
+                width: 64,
+                height: 64,
+                borderRadius: '50%',
+                backgroundColor: '#EFF6FF',
+                border: '2.5px solid #BFDBFE',
+                fontSize: 22,
+                fontWeight: 700,
+                color: '#2563EB',
+                letterSpacing: 1,
+              }}
+            >
               {initials}
             </div>
-            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-              <Camera className="h-5 w-5 text-white" />
-            </div>
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-900">
-              Photo de profil
-            </p>
-            <p className="text-xs text-gray-500">
-              JPG, PNG ou GIF. Max 2 Mo.
-            </p>
-            <button className="mt-1 text-xs font-medium text-[#2563EB] hover:text-blue-800 transition-colors">
-              Modifier la photo
-            </button>
-          </div>
-        </div>
 
-        {/* Profile form */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="sm:col-span-2">
-            <label htmlFor="fullName" className={labelClassName}>
-              Nom complet
-            </label>
-            <input
-              id="fullName"
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              className={inputClassName}
-              placeholder="Jean Dupont"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className={labelClassName}>
-              Adresse email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={mockProfile.email}
-              readOnly
-              className={cn(
-                inputClassName,
-                'bg-gray-50 text-gray-500 cursor-not-allowed'
-              )}
-            />
-            <p className="mt-1 text-xs text-gray-400">
-              L&apos;email ne peut pas être modifié
-            </p>
-          </div>
-
-          <div>
-            <label htmlFor="phone" className={labelClassName}>
-              Téléphone
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className={inputClassName}
-              placeholder="06 12 34 56 78"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="firmName" className={labelClassName}>
-              Nom du cabinet
-            </label>
-            <input
-              id="firmName"
-              type="text"
-              value={firmName}
-              onChange={(e) => setFirmName(e.target.value)}
-              className={inputClassName}
-              placeholder="Mon cabinet d'architecture"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="siret" className={labelClassName}>
-              SIRET
-            </label>
-            <input
-              id="siret"
-              type="text"
-              value={siret}
-              onChange={(e) => setSiret(e.target.value)}
-              className={inputClassName}
-              placeholder="123 456 789 00012"
-            />
-          </div>
-
-          <div className="sm:col-span-2">
-            <label htmlFor="address" className={labelClassName}>
-              Adresse
-            </label>
-            <input
-              id="address"
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className={inputClassName}
-              placeholder="15 rue de la Paix, 75002 Paris"
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-end">
-          <button
-            onClick={handleSaveProfile}
-            disabled={savingProfile}
-            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{ backgroundColor: savingProfile ? '#93bbfd' : '#2563EB' }}
-            onMouseEnter={(e) => {
-              if (!savingProfile)
-                e.currentTarget.style.backgroundColor = '#1d4ed8';
-            }}
-            onMouseLeave={(e) => {
-              if (!savingProfile)
-                e.currentTarget.style.backgroundColor = '#2563EB';
-            }}
-          >
-            <Save className="h-4 w-4" />
-            {savingProfile ? 'Enregistrement...' : 'Enregistrer'}
-          </button>
-        </div>
-      </div>
-
-      {/* ============================================ */}
-      {/* Company Section */}
-      {/* ============================================ */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
-            <Building2 className="h-4 w-4" />
-          </div>
-          <div>
-            <h2 className="text-base font-semibold text-gray-900">
-              Cabinet / Entreprise
-            </h2>
-            <p className="text-xs text-gray-500">
-              Informations de votre structure professionnelle
-            </p>
-          </div>
-        </div>
-
-        {/* Logo upload */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="flex h-16 w-16 items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 cursor-pointer hover:border-gray-400 transition-colors">
-            <Upload className="h-5 w-5 text-gray-400" />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-900">
-              Logo du cabinet
-            </p>
-            <p className="text-xs text-gray-500">
-              Apparaitra sur vos devis et factures. SVG, PNG ou JPG.
-            </p>
-            <button className="mt-1 text-xs font-medium text-[#2563EB] hover:text-blue-800 transition-colors">
-              Importer un logo
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="sm:col-span-2">
-            <label htmlFor="companyName" className={labelClassName}>
-              Nom du cabinet
-            </label>
-            <input
-              id="companyName"
-              type="text"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              className={inputClassName}
-              placeholder="Cabinet d'Architecture"
-            />
-          </div>
-
-          <div className="sm:col-span-2">
-            <label htmlFor="companyAddress" className={labelClassName}>
-              Adresse du cabinet
-            </label>
-            <input
-              id="companyAddress"
-              type="text"
-              value={companyAddress}
-              onChange={(e) => setCompanyAddress(e.target.value)}
-              className={inputClassName}
-              placeholder="15 rue de la Paix, 75002 Paris"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="companySiret" className={labelClassName}>
-              SIRET
-            </label>
-            <input
-              id="companySiret"
-              type="text"
-              value={companySiret}
-              onChange={(e) => setCompanySiret(e.target.value)}
-              className={inputClassName}
-              placeholder="123 456 789 00012"
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-end">
-          <button
-            onClick={handleSaveCompany}
-            disabled={savingCompany}
-            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{ backgroundColor: savingCompany ? '#93bbfd' : '#2563EB' }}
-            onMouseEnter={(e) => {
-              if (!savingCompany)
-                e.currentTarget.style.backgroundColor = '#1d4ed8';
-            }}
-            onMouseLeave={(e) => {
-              if (!savingCompany)
-                e.currentTarget.style.backgroundColor = '#2563EB';
-            }}
-          >
-            <Save className="h-4 w-4" />
-            {savingCompany ? 'Enregistrement...' : 'Enregistrer'}
-          </button>
-        </div>
-      </div>
-
-      {/* ============================================ */}
-      {/* Notifications Section */}
-      {/* ============================================ */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 text-amber-600">
-            <Bell className="h-4 w-4" />
-          </div>
-          <div>
-            <h2 className="text-base font-semibold text-gray-900">
-              Notifications
-            </h2>
-            <p className="text-xs text-gray-500">
-              Configurez vos préférences de notification
-            </p>
-          </div>
-        </div>
-
-        <div className="divide-y divide-gray-100">
-          <ToggleSwitch
-            enabled={emailNotifs}
-            onChange={setEmailNotifs}
-            label="Notifications par email"
-            description="Recevez les notifications importantes par email"
-          />
-          <ToggleSwitch
-            enabled={projectUpdates}
-            onChange={setProjectUpdates}
-            label="Mises à jour des projets"
-            description="Soyez informé des changements de statut et des nouvelles tâches"
-          />
-          <ToggleSwitch
-            enabled={invoiceReminders}
-            onChange={setInvoiceReminders}
-            label="Rappels de facturation"
-            description="Rappels pour les factures en attente et les échéances"
-          />
-          <ToggleSwitch
-            enabled={weeklySummary}
-            onChange={setWeeklySummary}
-            label="Résumé hebdomadaire"
-            description="Recevez un résumé de l'activité chaque lundi matin"
-          />
-        </div>
-      </div>
-
-      {/* ============================================ */}
-      {/* Security Section */}
-      {/* ============================================ */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
-            <Shield className="h-4 w-4" />
-          </div>
-          <div>
-            <h2 className="text-base font-semibold text-gray-900">
-              Sécurité
-            </h2>
-            <p className="text-xs text-gray-500">
-              Modifiez votre mot de passe
-            </p>
-          </div>
-        </div>
-
-        <div className="space-y-4 max-w-md">
-          <div>
-            <label htmlFor="currentPassword" className={labelClassName}>
-              Mot de passe actuel
-            </label>
-            <div className="relative">
-              <input
-                id="currentPassword"
-                type={showCurrentPassword ? 'text' : 'password'}
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                className={cn(inputClassName, 'pr-10')}
-                placeholder="Votre mot de passe actuel"
-              />
-              <button
-                type="button"
-                onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                {showCurrentPassword ? (
-                  <EyeOff className="h-4 w-4" />
-                ) : (
-                  <Eye className="h-4 w-4" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="newPassword" className={labelClassName}>
-              Nouveau mot de passe
-            </label>
-            <div className="relative">
-              <input
-                id="newPassword"
-                type={showNewPassword ? 'text' : 'password'}
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className={cn(inputClassName, 'pr-10')}
-                placeholder="Nouveau mot de passe"
-              />
-              <button
-                type="button"
-                onClick={() => setShowNewPassword(!showNewPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                {showNewPassword ? (
-                  <EyeOff className="h-4 w-4" />
-                ) : (
-                  <Eye className="h-4 w-4" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="confirmPassword" className={labelClassName}>
-              Confirmer le nouveau mot de passe
-            </label>
-            <input
-              id="confirmPassword"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className={inputClassName}
-              placeholder="Confirmer le mot de passe"
-            />
-            {newPassword &&
-              confirmPassword &&
-              newPassword !== confirmPassword && (
-                <p className="mt-1 text-xs text-red-500">
-                  Les mots de passe ne correspondent pas
+            {/* Info */}
+            <div>
+              <div className="flex items-center gap-3 flex-wrap">
+                <h2 style={{ fontSize: 18, fontWeight: 700, color: '#111827', margin: 0 }}>
+                  {mockProfile.full_name}
+                </h2>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    fontSize: 11,
+                    fontWeight: 600,
+                    color: '#2563EB',
+                    backgroundColor: '#EFF6FF',
+                    border: '1px solid #BFDBFE',
+                    borderRadius: 6,
+                    padding: '3px 10px',
+                    letterSpacing: 0.3,
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  Administrateur
+                </span>
+              </div>
+              <p style={{ fontSize: 14, color: '#6B7280', marginTop: 4 }}>
+                {mockProfile.email}
+              </p>
+              <div className="flex items-center gap-1.5" style={{ marginTop: 8 }}>
+                <Clock style={{ width: 13, height: 13, color: '#9CA3AF' }} />
+                <p style={{ fontSize: 12, color: '#9CA3AF' }}>
+                  Dernière connexion : {lastLogin}
                 </p>
-              )}
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-6 flex justify-end">
-          <button
-            onClick={handleChangePassword}
-            disabled={
-              savingPassword ||
-              !currentPassword ||
-              !newPassword ||
-              newPassword !== confirmPassword
-            }
-            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          {/* Quick edit button */}
+          <Link
+            href="/dashboard/settings/profile"
+            className="flex items-center gap-2 shrink-0"
             style={{
-              backgroundColor: savingPassword ? '#93bbfd' : '#2563EB',
+              padding: '9px 18px',
+              fontSize: 13,
+              fontWeight: 600,
+              color: '#2563EB',
+              backgroundColor: '#EFF6FF',
+              border: '1.5px solid #BFDBFE',
+              borderRadius: 10,
+              textDecoration: 'none',
+              transition: 'all 150ms ease',
             }}
             onMouseEnter={(e) => {
-              if (!savingPassword)
-                e.currentTarget.style.backgroundColor = '#1d4ed8';
+              e.currentTarget.style.backgroundColor = '#DBEAFE';
+              e.currentTarget.style.borderColor = '#93C5FD';
             }}
             onMouseLeave={(e) => {
-              if (!savingPassword)
-                e.currentTarget.style.backgroundColor = '#2563EB';
+              e.currentTarget.style.backgroundColor = '#EFF6FF';
+              e.currentTarget.style.borderColor = '#BFDBFE';
             }}
           >
-            <Shield className="h-4 w-4" />
-            {savingPassword
-              ? 'Modification en cours...'
-              : 'Modifier le mot de passe'}
-          </button>
+            <Pencil style={{ width: 14, height: 14 }} />
+            Modifier le profil
+          </Link>
+        </div>
+      </div>
+
+      {/* ============================================ */}
+      {/* Account Summary Section */}
+      {/* ============================================ */}
+      <div
+        style={{
+          backgroundColor: '#FFFFFF',
+          border: '1.5px solid #E5E7EB',
+          borderRadius: 16,
+          padding: '28px',
+        }}
+      >
+        <h3 style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 24 }}>
+          Résumé du compte
+        </h3>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Current plan */}
+          <div
+            style={{
+              padding: '18px',
+              borderRadius: 12,
+              border: '1px solid #E5E7EB',
+              backgroundColor: '#FAFAFA',
+            }}
+          >
+            <div className="flex items-center gap-2" style={{ marginBottom: 10 }}>
+              <CreditCard style={{ width: 16, height: 16, color: '#059669' }} />
+              <span style={{ fontSize: 12, fontWeight: 500, color: '#6B7280', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                Abonnement
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span style={{ fontSize: 22, fontWeight: 800, color: '#111827' }}>Pro</span>
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 600,
+                  color: '#059669',
+                  backgroundColor: '#ECFDF5',
+                  border: '1px solid #A7F3D0',
+                  borderRadius: 5,
+                  padding: '2px 8px',
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                }}
+              >
+                Actif
+              </span>
+            </div>
+          </div>
+
+          {/* Storage */}
+          <div
+            style={{
+              padding: '18px',
+              borderRadius: 12,
+              border: '1px solid #E5E7EB',
+              backgroundColor: '#FAFAFA',
+            }}
+          >
+            <div className="flex items-center gap-2" style={{ marginBottom: 10 }}>
+              <HardDrive style={{ width: 16, height: 16, color: '#2563EB' }} />
+              <span style={{ fontSize: 12, fontWeight: 500, color: '#6B7280', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                Stockage
+              </span>
+            </div>
+            <p style={{ fontSize: 14, fontWeight: 700, color: '#111827', marginBottom: 8 }}>
+              {storageUsedGo} Go <span style={{ fontWeight: 400, color: '#9CA3AF' }}>/ {storageTotalGo} Go</span>
+            </p>
+            {/* Progress bar */}
+            <div
+              style={{
+                width: '100%',
+                height: 6,
+                borderRadius: 3,
+                backgroundColor: '#E5E7EB',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                style={{
+                  width: `${storagePercent}%`,
+                  height: '100%',
+                  borderRadius: 3,
+                  backgroundColor: storagePercent > 80 ? '#DC2626' : '#2563EB',
+                  transition: 'width 500ms ease',
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Team members */}
+          <div
+            style={{
+              padding: '18px',
+              borderRadius: 12,
+              border: '1px solid #E5E7EB',
+              backgroundColor: '#FAFAFA',
+            }}
+          >
+            <div className="flex items-center gap-2" style={{ marginBottom: 10 }}>
+              <Users style={{ width: 16, height: 16, color: '#7C3AED' }} />
+              <span style={{ fontSize: 12, fontWeight: 500, color: '#6B7280', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                Membres
+              </span>
+            </div>
+            <p style={{ fontSize: 22, fontWeight: 800, color: '#111827' }}>
+              {teamCurrent}
+              <span style={{ fontSize: 14, fontWeight: 400, color: '#9CA3AF' }}> / {teamMax}</span>
+            </p>
+          </div>
+
+          {/* Next billing */}
+          <div
+            style={{
+              padding: '18px',
+              borderRadius: 12,
+              border: '1px solid #E5E7EB',
+              backgroundColor: '#FAFAFA',
+            }}
+          >
+            <div className="flex items-center gap-2" style={{ marginBottom: 10 }}>
+              <CalendarDays style={{ width: 16, height: 16, color: '#D97706' }} />
+              <span style={{ fontSize: 12, fontWeight: 500, color: '#6B7280', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                Prochaine facture
+              </span>
+            </div>
+            <p style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>
+              1 mars 2026
+            </p>
+            <p style={{ fontSize: 12, color: '#6B7280', marginTop: 2 }}>
+              99 EUR / mois
+            </p>
+          </div>
         </div>
       </div>
 
       {/* ============================================ */}
       {/* Danger Zone */}
       {/* ============================================ */}
-      <div className="bg-white border border-red-200 rounded-xl p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-600">
-            <AlertTriangle className="h-4 w-4" />
+      <div
+        style={{
+          backgroundColor: '#FFFFFF',
+          border: '1.5px solid #FECACA',
+          borderRadius: 16,
+          padding: '28px',
+        }}
+      >
+        <div className="flex items-center gap-3" style={{ marginBottom: 20 }}>
+          <div
+            className="flex items-center justify-center shrink-0"
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 10,
+              backgroundColor: '#FEF2F2',
+            }}
+          >
+            <AlertTriangle style={{ width: 18, height: 18, color: '#DC2626' }} />
           </div>
           <div>
-            <h2 className="text-base font-semibold text-red-900">
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: '#991B1B', margin: 0 }}>
               Zone dangereuse
-            </h2>
-            <p className="text-xs text-red-500">
+            </h3>
+            <p style={{ fontSize: 13, color: '#DC2626', marginTop: 2 }}>
               Actions irréversibles sur votre compte
             </p>
           </div>
         </div>
 
-        {!showDeleteConfirm ? (
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <p className="text-sm font-medium text-gray-900">
-                Supprimer le compte
+        <div
+          style={{
+            borderRadius: 12,
+            border: '1px solid #F3F4F6',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Export data */}
+          <div
+            className="flex items-center justify-between flex-wrap gap-4"
+            style={{
+              padding: '18px 20px',
+              borderBottom: '1px solid #F3F4F6',
+            }}
+          >
+            <div className="flex-1 min-w-0">
+              <p style={{ fontSize: 14, fontWeight: 600, color: '#111827', marginBottom: 2 }}>
+                Exporter toutes les données
               </p>
-              <p className="text-xs text-gray-500">
-                Cette action supprimera définitivement votre compte et toutes
-                vos données. Cette action est irréversible.
+              <p style={{ fontSize: 13, color: '#6B7280' }}>
+                Téléchargez une archive complète de vos projets, documents et factures.
               </p>
             </div>
             <button
-              onClick={() => setShowDeleteConfirm(true)}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-red-300 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors shrink-0"
+              className="flex items-center gap-2 shrink-0"
+              style={{
+                padding: '9px 18px',
+                fontSize: 13,
+                fontWeight: 600,
+                color: '#374151',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #D1D5DB',
+                borderRadius: 10,
+                cursor: 'pointer',
+                transition: 'all 150ms ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#F9FAFB';
+                e.currentTarget.style.borderColor = '#9CA3AF';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#FFFFFF';
+                e.currentTarget.style.borderColor = '#D1D5DB';
+              }}
             >
-              <Trash2 className="h-4 w-4" />
+              <Download style={{ width: 15, height: 15 }} />
+              Exporter (ZIP)
+            </button>
+          </div>
+
+          {/* Delete account */}
+          <div
+            className="flex items-center justify-between flex-wrap gap-4"
+            style={{
+              padding: '18px 20px',
+              backgroundColor: '#FFFBFB',
+            }}
+          >
+            <div className="flex-1 min-w-0">
+              <p style={{ fontSize: 14, fontWeight: 600, color: '#991B1B', marginBottom: 2 }}>
+                Supprimer le compte
+              </p>
+              <p style={{ fontSize: 13, color: '#6B7280' }}>
+                Supprime définitivement votre compte et toutes les données associées.
+              </p>
+            </div>
+            <button
+              onClick={() => setShowDeleteModal(true)}
+              className="flex items-center gap-2 shrink-0"
+              style={{
+                padding: '9px 18px',
+                fontSize: 13,
+                fontWeight: 600,
+                color: '#DC2626',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #FECACA',
+                borderRadius: 10,
+                cursor: 'pointer',
+                transition: 'all 150ms ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#FEF2F2';
+                e.currentTarget.style.borderColor = '#FCA5A5';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#FFFFFF';
+                e.currentTarget.style.borderColor = '#FECACA';
+              }}
+            >
+              <Trash2 style={{ width: 15, height: 15 }} />
               Supprimer le compte
             </button>
           </div>
-        ) : (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4">
-            <p className="text-sm font-medium text-red-800 mb-3">
-              Êtes-vous absolument certain ? Tapez{' '}
-              <span className="font-mono font-bold">SUPPRIMER</span> pour
-              confirmer.
-            </p>
-            <input
-              type="text"
-              value={deleteConfirmText}
-              onChange={(e) => setDeleteConfirmText(e.target.value)}
-              className="block w-full rounded-lg border border-red-300 px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-red-500 focus:ring-2 focus:ring-red-500/20 focus:outline-none mb-3"
-              placeholder="Tapez SUPPRIMER"
-            />
-            <div className="flex items-center gap-2">
-              <button
-                disabled={deleteConfirmText !== 'SUPPRIMER'}
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Trash2 className="h-4 w-4" />
-                Confirmer la suppression
-              </button>
-              <button
-                onClick={() => {
-                  setShowDeleteConfirm(false);
-                  setDeleteConfirmText('');
-                }}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-white transition-colors"
-              >
-                Annulér
-              </button>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
 
       {/* Bottom spacer for mobile scroll */}
-      <div className="h-4" />
+      <div style={{ height: 16 }} />
+
+      {/* Delete confirmation modal */}
+      <DeleteModal open={showDeleteModal} onClose={() => setShowDeleteModal(false)} />
     </div>
   );
 }
